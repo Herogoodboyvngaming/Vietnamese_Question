@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tui Là Meme Hài Hước VCL</title>
+  <title>Anime Girl Meme Hài Hước VCL ♡</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Comic+Neue:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@600&display=swap');
 
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      background: linear-gradient(135deg, #ffe6f2 0%, #fad0e4 100%);
       font-family: 'Comic Neue', cursive;
       display: flex;
       flex-direction: column;
@@ -20,6 +20,23 @@
       text-align: center;
       overflow: hidden;
       position: relative;
+      transition: background 2s ease;
+    }
+
+    /* Đồng hồ VN */
+    .clock {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #ff4757;
+      border: 4px solid #ff6b81;
+      z-index: 10;
     }
 
     .container {
@@ -27,8 +44,11 @@
       padding: 40px 60px;
       border-radius: 30px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      max-width: 600px;
+      max-width: 700px;
       animation: float 6s ease-in-out infinite;
+      margin: 80px 20px 100px;
+      transition: all 1s ease;
+      z-index: 5;
     }
 
     @keyframes float {
@@ -37,18 +57,19 @@
       100% { transform: translateY(0); }
     }
 
-    h1 {
-      font-size: 3.5rem;
-      color: #ff4757;
+    /* Anime Girl */
+    #animeGirl {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
       margin-bottom: 20px;
-      text-shadow: 3px 3px 0px #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,105,180,0.3);
+      transition: all 0.5s ease;
     }
 
-    p {
-      font-size: 1.8rem;
-      color: #2f3542;
-      margin: 30px 0;
-    }
+    h1 { font-size: 3.5rem; color: #ff4757; margin: 10px 0; text-shadow: 3px 3px 0px #fff; }
+    p { font-size: 1.8rem; color: #2f3542; margin: 20px 0; }
 
     .buttons {
       display: flex;
@@ -68,44 +89,83 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    #yesBtn {
-      background: #2ed573;
-      color: white;
-    }
+    #yesBtn { background: #ff6b9d; color: white; }
+    #noBtn { background: #ff8fab; color: white; position: relative; }
+    button:hover { transform: scale(1.1); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-    #noBtn {
-      background: #ff6b81;
-      color: white;
-      position: relative;
-    }
+    #response { font-size: 2.2rem; margin-top: 30px; min-height: 80px; transition: all 1s; }
 
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    /* Overlay đen + mưa */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0);
+      pointer-events: none;
+      transition: background 3s ease;
+      z-index: 8;
     }
+    .overlay.sad { background: rgba(0,0,0,0.98); pointer-events: all; }
 
-    .sad-text {
-      font-size: 2rem;
-      color: #5352ed;
-      margin-top: 30px;
-      display: none;
-    }
-
-    .hearts {
+    .rain {
       position: absolute;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
+      opacity: 0;
+      z-index: 7;
+    }
+    .rain.active { opacity: 1; }
+
+    /* Nút Restart */
+    #restartBtn {
+      display: none;
+      padding: 30px 70px;
+      font-size: 2.8rem;
+      background: #ffa502;
+      color: white;
+      border-radius: 70px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      animation: pulse 1.5s infinite;
+      z-index: 20;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
     }
 
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px 60px;
+      border-radius: 40px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      max-width: 80%;
+      z-index: 30;
+      animation: popupShow 0.8s ease;
+    }
+    @keyframes popupShow {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .popup h2 { font-size: 3rem; margin: 0 0 20px; }
+    .popup p { font-size: 2rem; margin: 20px 0; }
+    .sad-popup h2 { color: #5352ed; }
+    .happy-popup h2 { color: #ff4757; }
+
+    .hearts { position: absolute; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 6; }
     .heart {
       position: absolute;
-      font-size: 2rem;
+      font-size: 2.5rem;
       animation: fly 4s linear infinite;
-      opacity: 0.8;
+      opacity: 0.9;
     }
-
     @keyframes fly {
       0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
       100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
@@ -117,99 +177,214 @@
       font-size: 1.2rem;
       color: #2f3542;
       font-weight: bold;
+      z-index: 10;
+      transition: opacity 2s;
     }
-
-    .vn-flag {
-      font-size: 1.5rem;
-      margin-left: 10px;
-    }
+    .vn-flag { font-size: 1.5rem; margin-left: 10px; }
   </style>
 </head>
 <body>
-  <div class="hearts" id="hearts"></div>
-
-  <div class="container">
-    <h1>MEME HÀI HƯỚC VCL 😆</h1>
-    <p id="question">Bạn có thích tui không? 🥺</p>
-    
-    <div class="buttons">
-      <button id="yesBtn">Có ❤️</button>
-      <button id="noBtn">Không 😭</button>
-    </div>
-
-    <p class="sad-text" id="response"></p>
+  <!-- Đồng hồ -->
+  <div class="clock">
+    <div>🇻🇳 Việt Nam</div>
+    <div id="time" style="font-size: 1.8rem; margin-top: 5px;"></div>
   </div>
 
-  <footer>
+  <!-- Overlay + mưa + tim -->
+  <div class="overlay" id="overlay"></div>
+  <div class="rain" id="rain"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container" id="container">
+    <img id="animeGirl" src="https://img.freepik.com/premium-photo/beautiful-anime-girl-with-blush-color-hair-white-background_864588-34131.jpg?semt=ais_hybrid&w=740&q=80" alt="Anime Girl ♡">
+    <h1>ANIME GIRL HÀI HƯỚC VCL ♡</h1>
+    <p id="question">Bạn có thích tớ không? 🥺</p>
+    
+    <div class="buttons" id="buttons">
+      <button id="yesBtn">Có nhaaa ❤️</button>
+      <button id="noBtn">Không huhu 😭</button>
+    </div>
+
+    <p id="response"></p>
+
+    <button id="restartBtn">Restart lại đi mà 🥺</button>
+  </div>
+
+  <!-- Popup buồn -->
+  <div class="popup sad-popup" id="sadPopup">
+    <h2>Hu hu hu 😭💔</h2>
+    <p>Lại không thích tớ nữa hả?<br>Tớ buồn muốn chết luôn rồi đó 🥺🥺</p>
+    <button onclick="closePopup('sadPopup')">Đóng</button>
+  </div>
+
+  <!-- Popup vui -->
+  <div class="popup happy-popup" id="happyPopup">
+    <h2>YAYYYY!!! 🥰💕💖</h2>
+    <p>OMG TỚ BIẾT BẠN THÍCH TỚ MÀ!!!<br>Hihi yêu bạn nhất trên đời luôn áaaa~ ❤️❤️❤️</p>
+    <button onclick="closePopup('happyPopup')">Hihi cảm ơn nhaaa~</button>
+  </div>
+
+  <footer id="footer">
     Made in VN <span class="vn-flag">🇻🇳</span><br>
     Made by: Nguyễn Chí Dự
   </footer>
 
   <script>
+    // Đồng hồ Việt Nam
+    function updateVietnamTime() {
+      const now = new Date();
+      const vietnamTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
+      const hours = String(vietnamTime.getHours()).padStart(2, '0');
+      const minutes = String(vietnamTime.getMinutes()).padStart(2, '0');
+      const seconds = String(vietnamTime.getSeconds()).padStart(2, '0');
+      const day = vietnamTime.getDate();
+      const month = vietnamTime.getMonth() + 1;
+      const year = vietnamTime.getFullYear();
+      document.getElementById('time').textContent = `\( {hours}: \){minutes}:${seconds} | \( {day}/ \){month}/${year}`;
+    }
+    updateVietnamTime();
+    setInterval(updateVietnamTime, 1000);
+
+    // Anime girl images
+    const normalImg = "https://img.freepik.com/premium-photo/beautiful-anime-girl-with-blush-color-hair-white-background_864588-34131.jpg?semt=ais_hybrid&w=740&q=80"; // pouting cute
+    const happyImg = "https://images.stockcake.com/public/a/7/d/a7d3e795-3268-4287-b94c-2e0ecdc3af79/pastel-anime-dreams-stockcake.jpg"; // happy excited
+    const sadImg = "https://media.craiyon.com/2025-09-09/Bdk5HBzvStKLure9ms6x-w.webp"; // crying sad
+    const angryImg = "https://media1.tenor.com/m/I59Tdlo-OIUAAAAC/d%E1%BB%97i.gif"; // dỗi angry
+
+    const animeGirl = document.getElementById('animeGirl');
+
+    // Elements
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
+    const restartBtn = document.getElementById('restartBtn');
     const question = document.getElementById('question');
     const response = document.getElementById('response');
-    const heartsContainer = document.getElementById('hearts');
+    const container = document.getElementById('container');
+    const overlay = document.getElementById('overlay');
+    const rain = document.getElementById('rain');
+    const hearts = document.getElementById('hearts');
+    const footer = document.getElementById('footer');
+    const buttons = document.getElementById('buttons');
 
     let noCount = 0;
+    let hasDoiOnce = false;
+
     const sadMessages = [
-      "Thích mình đi mà 🥺",
+      "Thích tớ đi mà 🥺",
       "Thôi màaaa, thích đi 🥺🥺",
-      "Tui buồn lắm rồi đó 😢",
-      "Thích tui đi mà huhu 😭",
+      "Tớ buồn lắm rồi đó 😢",
+      "Thích tớ đi mà huhu 😭",
       "Đừng ác vậy chứ 🥹",
-      "Tui khóc thật rồi đó 💔",
-      "Thôi được rồi... tui đi đây 😞"
+      "Tớ khóc thật rồi đó 💔"
     ];
 
-    // Nút "Có" - troll ngọt ngào
+    function resetGame() {
+      noCount = 0;
+      hasDoiOnce = false;
+      question.textContent = "Bạn có thích tớ không? 🥺";
+      response.textContent = "";
+      response.style.color = "";
+      buttons.style.display = "flex";
+      restartBtn.style.display = "none";
+      container.style.opacity = "1";
+      footer.style.opacity = "1";
+      overlay.classList.remove('sad');
+      rain.classList.remove('active');
+      rain.innerHTML = "";
+      noBtn.style.position = "relative";
+      noBtn.style.left = "auto";
+      noBtn.style.top = "auto";
+      animeGirl.src = normalImg;
+    }
+
+    function goDoi() {
+      hasDoiOnce = true;
+      question.textContent = "";
+      response.innerHTML = "Tức bạn thiệt chớ cứ không chịu hoài,<br>tớ dỗi luôn, cậu đi đi, huhuhuhu 🥺🥺😭😭😭😭";
+      response.style.color = "#fff";
+      response.style.fontSize = "2.8rem";
+
+      overlay.classList.add('sad');
+      rain.classList.add('active');
+      createRainDrops();
+      container.style.opacity = "0.2";
+      buttons.style.display = "none";
+      footer.style.opacity = "0.1";
+      restartBtn.style.display = "block";
+      animeGirl.src = angryImg; // dỗi angry gif
+    }
+
     yesBtn.addEventListener('click', () => {
-      question.textContent = "OMG tui biết bạn thích tui mà hihi 😏💕";
-      response.textContent = "Yêu bạn nhiều lắm luôn áaa~ ❤️";
-      response.style.display = "block";
-      response.style.color = "#ff4757";
-      yesBtn.disabled = true;
-      noBtn.disabled = true;
-      createHearts(30);
+      document.getElementById('happyPopup').style.display = "block";
+      animeGirl.src = happyImg;
+      createHearts(60);
     });
 
-    // Nút "Không" - càng nhấn càng buồn + chạy trốn
     noBtn.addEventListener('click', () => {
       noCount++;
+      animeGirl.src = sadImg; // buồn khóc khi từ chối
+
       if (noCount < sadMessages.length) {
         response.textContent = sadMessages[noCount - 1];
-        response.style.display = "block";
         response.style.color = "#5352ed";
-        
-        // Làm nút "Không" chạy lung tung
+
         noBtn.style.position = "absolute";
         const x = Math.random() * (window.innerWidth - 200);
-        const y = Math.random() * (window.innerHeight - 100);
+        const y = Math.random() * (window.innerHeight - 200);
         noBtn.style.left = `${x}px`;
         noBtn.style.top = `${y}px`;
       } else {
-        question.textContent = "Thôi tui buồn quá đi mất 😭💔";
-        response.textContent = "Tui đi ngủ đây... bye bye 🥀";
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
+        goDoi();
       }
     });
 
-    // Tạo tim bay khi nhấn "Có"
+    restartBtn.addEventListener('click', () => {
+      resetGame();
+    });
+
+    // Nếu chơi lại mà vẫn không hoài → popup buồn
+    const checkSad = setInterval(() => {
+      if (hasDoiOnce && noCount >= sadMessages.length && !overlay.classList.contains('sad')) {
+        document.getElementById('sadPopup').style.display = "block";
+        animeGirl.src = sadImg;
+      }
+    }, 500);
+
+    function closePopup(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
     function createHearts(count) {
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
           const heart = document.createElement('div');
           heart.classList.add('heart');
-          heart.textContent = ['❤️', '💖', '💕', '💗', '💘'][Math.floor(Math.random() * 5)];
+          heart.textContent = ['❤️', '💖', '💕', '💗', '💘', '🩷', '🥰'][Math.floor(Math.random() * 7)];
           heart.style.left = Math.random() * 100 + 'vw';
           heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-          heartsContainer.appendChild(heart);
-
+          hearts.appendChild(heart);
           setTimeout(() => heart.remove(), 5000);
-        }, i * 100);
+        }, i * 70);
       }
+    }
+
+    function createRainDrops() {
+      for (let i = 0; i < 120; i++) {
+        const drop = document.createElement('div');
+        drop.style.position = 'absolute';
+        drop.style.width = '2px';
+        drop.style.height = '60px';
+        drop.style.background = 'rgba(200,230,255,0.6)';
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.animation = 'rainFall ' + (Math.random() * 0.8 + 0.6) + 's linear infinite';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        rain.appendChild(drop);
+      }
+    }
+
+    @keyframes rainFall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
     }
   </script>
 </body>
