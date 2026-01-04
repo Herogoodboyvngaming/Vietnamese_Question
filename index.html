@@ -46,7 +46,7 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       max-width: 700px;
       animation: float 6s ease-in-out infinite;
-      margin: 80px 20px 100px;
+      margin: 80px 20px 120px;
       transition: all 1s ease;
       z-index: 5;
     }
@@ -171,16 +171,44 @@
       100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
+    /* FOOTER SIÊU NỔI BẬT */
     footer {
-      position: absolute;
+      position: fixed;
       bottom: 20px;
-      font-size: 1.2rem;
-      color: #2f3542;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
       font-weight: bold;
-      z-index: 10;
-      transition: opacity 2s;
+      color: #ff4757;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 30px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 9999;
+      transition: opacity 1s ease, transform 0.5s ease;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
-    .vn-flag { font-size: 1.5rem; margin-left: 10px; }
+
+    footer:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    .vn-flag {
+      font-size: 2rem;
+      margin: 0 8px;
+      animation: wave 2s infinite linear;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+    }
+
+    @keyframes rainFall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
   </style>
 </head>
 <body>
@@ -196,7 +224,7 @@
   <div class="hearts" id="hearts"></div>
 
   <div class="container" id="container">
-    <img id="animeGirl" src="https://w0.peakpx.com/wallpaper/251/987/HD-wallpaper-anime-girl-pink-hair-band-aid-shy-expression-blushes-twintails-anime.jpg" alt="Anime Girl ♡">
+    <img id="animeGirl" src="https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif" alt="Anime Girl ♡">
     <h1>ANIME GIRL HÀI HƯỚC VCL ♡</h1>
     <p id="question">Bạn có thích tớ không? 🥺</p>
     
@@ -224,9 +252,10 @@
     <button onclick="closePopup('happyPopup')">Hihi cảm ơn nhaaa~</button>
   </div>
 
+  <!-- FOOTER ĐẸP LUN LINH -->
   <footer id="footer">
-    Made in VN <span class="vn-flag">🇻🇳</span><br>
-    Made by: Nguyễn Chí Dự
+    Made in VN <span class="vn-flag">🇻🇳</span> 
+    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️
   </footer>
 
   <script>
@@ -245,15 +274,13 @@
     updateVietnamTime();
     setInterval(updateVietnamTime, 1000);
 
-    // Ảnh anime girl ổn định
-    const normalImg = "https://w0.peakpx.com/wallpaper/251/987/HD-wallpaper-anime-girl-pink-hair-band-aid-shy-expression-blushes-twintails-anime.jpg"; // cute blushing
-    const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg"; // happy excited
-    const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg"; // sad crying
-    const angryImg = "http://i.imgur.com/clpBDOi.gif"; // angry pouting tsundere gif
+    // Ảnh anime
+    const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif";
+    const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg";
+    const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg";
+    const angryImg = "https://media.tenor.com/3kvIVPYgTE8AAAAM/hmph-hmph-anime.gif";
 
     const animeGirl = document.getElementById('animeGirl');
-
-    // Elements
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
     const restartBtn = document.getElementById('restartBtn');
@@ -309,7 +336,7 @@
       createRainDrops();
       container.style.opacity = "0.2";
       buttons.style.display = "none";
-      footer.style.opacity = "0.1";
+      footer.style.opacity = "0.7"; // vẫn thấy footer khi dỗi
       restartBtn.style.display = "block";
       animeGirl.src = angryImg;
     }
@@ -342,7 +369,6 @@
       resetGame();
     });
 
-    // Check popup buồn khi chơi lại
     setInterval(() => {
       if (hasDoiOnce && noCount >= sadMessages.length && !overlay.classList.contains('sad')) {
         document.getElementById('sadPopup').style.display = "block";
@@ -382,15 +408,8 @@
       }
     }
 
-    @keyframes rainFall {
-      0% { transform: translateY(-100vh); }
-      100% { transform: translateY(100vh); }
-    }
-
-    // Load ảnh mặc định ngay khi mở trang
-    window.onload = () => {
-      animeGirl.src = normalImg;
-    };
+    // Load ảnh mặc định
+    animeGirl.src = normalImg;
   </script>
 </body>
 </html>
