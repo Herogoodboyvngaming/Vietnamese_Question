@@ -134,26 +134,11 @@
       transform: translate(-50%, -50%);
     }
 
-    /* Nút Restart cố định */
+    /* Nút Restart cố định góc phải dưới */
     #restartBtnFixed {
       position: fixed;
       bottom: 100px;
       right: 20px;
-      padding: 15px 30px;
-      font-size: 1.6rem;
-      background: #ff6b9d;
-      color: white;
-      border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 9999;
-      animation: pulse 2s infinite;
-    }
-
-    /* Nút bật nhạc */
-    #musicBtn {
-      position: fixed;
-      bottom: 100px;
-      left: 20px;
       padding: 15px 30px;
       font-size: 1.6rem;
       background: #ff6b9d;
@@ -235,18 +220,10 @@
   </style>
 </head>
 <body>
-  <!-- Nhạc nền The Builder -->
-  <audio id="backgroundMusic" loop>
-    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/Oddities/Kevin_MacLeod_-_The_Builder.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Nút bật nhạc (tương tác để mở khóa autoplay) -->
-  <button id="musicBtn">🎵 Bật nhạc nền</button>
-
   <!-- Đồng hồ -->
   <div class="clock">
     <div>🇻🇳 Việt Nam</div>
-    <div id="time">Đang tải giờ VN...</div>
+    <div id="time">00:00:00 | 01/01/2026</div>
   </div>
 
   <!-- Overlay + mưa + tim -->
@@ -260,8 +237,8 @@
     <p id="question">Bạn có thích tớ không? 🥺</p>
     
     <div class="buttons" id="buttons">
-      <button id="yesBtn">Có nhaaa ❤️</button>
-      <button id="noBtn">Không huhu 😭</button>
+      <button id="yesBtn">Có ❤️</button>
+      <button id="noBtn">Không 😭</button>
     </div>
 
     <p id="response"></p>
@@ -288,12 +265,11 @@
 
   <footer id="footer">
     Made in VN <span class="vn-flag">🇻🇳</span> 
-    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️<br>
-    Music: "The Builder" by Kevin MacLeod (CC BY)
+    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️
   </footer>
 
   <script>
-    // ==================== FIX ĐỒNG HỒ VIỆT NAM CHẠY ĐÚNG NGAY TỪ ĐẦU ====================
+    // ĐỒNG HỒ VIỆT NAM CHẠY ĐÚNG NGAY TỪ ĐẦU
     const timeElement = document.getElementById('time');
 
     function updateVietnamTime() {
@@ -306,37 +282,13 @@
       const month = String(vietnamTime.getMonth() + 1).padStart(2, '0');
       const year = vietnamTime.getFullYear();
 
-      if (timeElement) {
-        timeElement.textContent = `\( {hours}: \){minutes}:${seconds} | \( {day}/ \){month}/${year}`;
-      }
+      timeElement.textContent = `\( {hours}: \){minutes}:${seconds} | \( {day}/ \){month}/${year}`;
     }
 
-    // Chạy ngay khi load và cập nhật mỗi giây
-    window.addEventListener('load', () => {
-      updateVietnamTime();
-      setInterval(updateVietnamTime, 1000);
-    });
+    updateVietnamTime();
+    setInterval(updateVietnamTime, 1000);
 
-    // ==================== NHẠC NỀN - MỞ KHÓA TƯƠNG TÁC ====================
-    const music = document.getElementById('backgroundMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    let musicUnlocked = false;
-
-    musicBtn.addEventListener('click', () => {
-      if (!musicUnlocked) {
-        music.volume = 0.3;
-        music.play().then(() => {
-          musicUnlocked = true;
-          musicBtn.textContent = "🎶 Nhạc đang vui~";
-          musicBtn.style.background = "#2ed573";
-          musicBtn.disabled = true;
-        }).catch(err => {
-          console.log("Lỗi phát nhạc:", err);
-        });
-      }
-    });
-
-    // Các phần còn lại giữ nguyên
+    // Ảnh anime
     const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif";
     const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg";
     const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg";
@@ -475,7 +427,6 @@
       }
     }
 
-    // Load ảnh mặc định
     animeGirl.src = normalImg;
   </script>
 </body>
