@@ -58,15 +58,13 @@
 
     .page {
       width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+      opacity: 1;
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .page.hidden {
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(30px);
       pointer-events: none;
     }
 
@@ -90,7 +88,7 @@
       100% { transform: translateY(0); }
     }
 
-    #animeGirl {
+    .animeGirl {
       width: 100%;
       max-width: 300px;
       height: auto;
@@ -144,11 +142,11 @@
       min-width: 120px;
     }
 
-    #yesBtn { background: #ff6b9d; color: white; }
-    #noBtn { background: #ff8fab; color: white; position: absolute; z-index: 10; }
+    .yesBtn { background: #ff6b9d; color: white; }
+    .noBtn { background: #ff8fab; color: white; position: absolute; z-index: 10; }
     button:hover { transform: scale(1.1); }
 
-    #response {
+    .response {
       font-size: clamp(1.6rem, 5vw, 2.2rem);
       margin-top: 30px;
       min-height: 80px;
@@ -317,17 +315,17 @@
   <!-- Trang 1 -->
   <div id="page1" class="page">
     <div class="container">
-      <img id="animeGirl" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Anime Girl ♡">
+      <img class="animeGirl" id="animeGirl1" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Anime Girl ♡">
       <h1>ANIME GIRL HÀI HƯỚC VCL ♡</h1>
       <p class="subtitle">Đây là câu hỏi vui thôi chứ không có ý gì hết nha! 😆</p>
-      <p id="question">Bạn có thích tớ không? 🥺</p>
+      <p id="question1">Bạn có thích tớ không? 🥺</p>
       
-      <div class="buttons" id="buttons">
-        <button id="yesBtn">Có ❤️</button>
-        <button id="noBtn">Không 😭</button>
+      <div class="buttons" id="buttons1">
+        <button class="yesBtn" id="yesBtn1">Có ❤️</button>
+        <button class="noBtn" id="noBtn1">Không 😭</button>
       </div>
 
-      <p id="response"></p>
+      <p class="response" id="response1"></p>
       <button id="toPage2" style="margin-top: 30px; padding: 12px 30px; font-size: 1.4rem; background: #ff6b9d; color: white; border-radius: 50px;">Đi tới Trang 2 (câu hỏi mới siêu drama) ➡️</button>
     </div>
   </div>
@@ -335,17 +333,17 @@
   <!-- Trang 2 -->
   <div id="page2" class="page hidden">
     <div class="container">
-      <img id="animeGirl2" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Thinking Anime Girl ♡">
+      <img class="animeGirl" id="animeGirl2" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Thinking Anime Girl ♡">
       <h1>TRANG 2 - CÂU HỎI MỚI SIÊU DRAMA ♡</h1>
       <p class="subtitle">Nếu có câu hỏi mới sẽ cập nhật ở đây và trang tiếp theo (nếu có) 😏</p>
       <p id="question2">Bạn có thích tớ không? (lần 2, troll nặng hơn) 🥺</p>
       
       <div class="buttons" id="buttons2">
-        <button id="yesBtn2">Có ❤️</button>
-        <button id="noBtn2">Không 😭</button>
+        <button class="yesBtn" id="yesBtn2">Có ❤️</button>
+        <button class="noBtn" id="noBtn2">Không 😭</button>
       </div>
 
-      <p id="response2"></p>
+      <p class="response" id="response2"></p>
       <button id="toPage1" style="margin-top: 30px; padding: 12px 30px; font-size: 1.4rem; background: #ff6b9d; color: white; border-radius: 50px;">⬅️ Quay lại Trang 1</button>
     </div>
   </div>
@@ -378,28 +376,18 @@
   </footer>
 
   <script>
-    // Ảnh anime load ổn định
-    const normalImg = "https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif"; // thinking cute GIF cho trang 2
+    // Ảnh anime
+    const normalImg = "https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif"; // thinking cute GIF
     const happyImg = "https://w0.peakpx.com/wallpaper/548/200/HD-wallpaper-sakura-miku-hatsune-miku-hair-excited-anime-hot-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-joy-sexy-happy-cute-hatsune-pink-hair.jpg";
     const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg";
     const angryImg = "http://i.imgur.com/clpBDOi.gif";
 
-    const animeGirl = document.getElementById('animeGirl');
-    const animeGirl2 = document.getElementById('animeGirl2');
-
-    // Trang 1 elements
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const question = document.getElementById('question');
-    const response = document.getElementById('response');
-    const buttons = document.getElementById('buttons');
-
-    // Trang 2 elements
-    const yesBtn2 = document.getElementById('yesBtn2');
-    const noBtn2 = document.getElementById('noBtn2');
-    const question2 = document.getElementById('question2');
-    const response2 = document.getElementById('response2');
-    const buttons2 = document.getElementById('buttons2');
+    // Elements chung
+    const overlay = document.getElementById('overlay');
+    const rain = document.getElementById('rain');
+    const hearts = document.getElementById('hearts');
+    const restartBtnBig = document.getElementById('restartBtnBig');
+    const restartBtnFixed = document.getElementById('restartBtnFixed');
 
     // Chuyển trang
     const page1 = document.getElementById('page1');
@@ -409,43 +397,184 @@
 
     toPage2.addEventListener('click', () => {
       page1.classList.add('hidden');
-      page2.classList.remove('hidden');
+      setTimeout(() => {
+        page2.classList.remove('hidden');
+      }, 800);
       resetGame2();
     });
 
     toPage1.addEventListener('click', () => {
       page2.classList.add('hidden');
-      page1.classList.remove('hidden');
-      resetGame();
+      setTimeout(() => {
+        page1.classList.remove('hidden');
+      }, 800);
+      resetGame1();
     });
 
-    // Trang 1 - 10/10
-    let noCount = 0;
-    let yesCount = 0;
+    // Popup info
+    const infoBtn = document.getElementById('infoBtn');
+    infoBtn.addEventListener('click', () => {
+      document.getElementById('infoPopup').style.display = "block";
+    });
+
+    // Function close popup
+    function closePopup(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Function create hearts
+    function createHearts(count) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.textContent = ['❤️', '💖', '💕', '💗', '💘', '🩷', '🥰'][Math.floor(Math.random() * 7)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          hearts.appendChild(heart);
+          setTimeout(() => heart.remove(), 5000);
+        }, i * 70);
+      }
+    }
+
+    // Function create rain
+    function createRainDrops() {
+      for (let i = 0; i < 120; i++) {
+        const drop = document.createElement('div');
+        drop.style.position = 'absolute';
+        drop.style.width = '2px';
+        drop.style.height = '60px';
+        drop.style.background = 'rgba(200,230,255,0.6)';
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.animation = 'rainFall ' + (Math.random() * 0.8 + 0.6) + 's linear infinite';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        rain.appendChild(drop);
+      }
+    }
+
+    // ==================== TRANG 1 - TROLL 10/10 ====================
+    const animeGirl1 = document.getElementById('animeGirl1');
+    const yesBtn1 = document.getElementById('yesBtn1');
+    const noBtn1 = document.getElementById('noBtn1');
+    const question1 = document.getElementById('question1');
+    const response1 = document.getElementById('response1');
+    const buttons1 = document.getElementById('buttons1');
+
+    let noCount1 = 0;
+    let yesCount1 = 0;
     let hasDoiOnce = false;
 
-    const yesConfirmMessages = [ /* 10 câu Có như cũ */ ];
-    const noConfirmMessages = [ /* 10 câu Không như cũ */ ];
+    const yesConfirmMessages1 = [
+      "Bạn có chắc chắn thích tớ không? 🥺",
+      "Thật sự thích tớ luôn hả? Không đùa chứ? 😳",
+      "Ủa mà thích kiểu gì vậy ta? ❤️",
+      "Tớ xinh gái lắm hả mà thích dữ vậy? 😏",
+      "Thích tớ rồi thì chịu trách nhiệm nhaaa~ 💕",
+      "Hihi biết ngay mà, ai mà không thích tớ chứ 😌",
+      "Thích nhiều không? Nói tớ nghe coi~ 🥰",
+      "Từ giờ là của tớ rồi nha, không được đổi ý! 😤",
+      "Tớ cũng thích bạn lâu rồi áaa~ 🤭",
+      "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
+    ];
 
-    function resetGame() {
-      // reset trang 1
-      noCount = 0;
-      yesCount = 0;
+    const noConfirmMessages1 = [
+      "Bạn chắc chắn không thích tớ hả? 🥺",
+      "Thật sự không thích luôn á? Không tiếc chứ? 😢",
+      "Tớ buồn lắm rồi đó, đổi ý đi mà huhu 😭",
+      "Không thích tớ thì thích ai rồi hả? Nói đi! 😤",
+      "Tớ dễ thương thế này mà không thích nổi sao? 🥹",
+      "Thôi màaaa, thích tớ chút xíu thôi cũng được mà 🥺🥺",
+      "Không thích thì tớ khóc thật đấy, chịu không? 💔",
+      "Bạn ác quá đi mất, tớ dỗi luôn bây giờ 😞",
+      "Được rồi... tớ buồn lắm luôn á huhuhu 😭",
+      "Tức bạn thiệt chớ cứ không chịu hoài, tớ dỗi luôn đây!!! 😭😭😭"
+    ];
+
+    function resetGame1() {
+      noCount1 = 0;
+      yesCount1 = 0;
       hasDoiOnce = false;
-      question.textContent = "Bạn có thích tớ không? 🥺";
-      response.textContent = "";
-      buttons.style.display = "flex";
-      container.style.opacity = "1";
+      question1.textContent = "Bạn có thích tớ không? 🥺";
+      response1.textContent = "";
+      response1.style.color = "";
+      response1.style.fontSize = "";
+      buttons1.style.display = "flex";
+      restartBtnBig.style.display = "none";
       overlay.classList.remove('sad');
       rain.classList.remove('active');
       rain.innerHTML = "";
-      noBtn.style.position = "static";
-      animeGirl.src = normalImg;
+      noBtn1.style.position = "static";
+      animeGirl1.src = normalImg;
     }
 
-    // ... (code troll trang 1 như cũ) ...
+    function goDoi() {
+      hasDoiOnce = true;
+      question1.textContent = "";
+      response1.innerHTML = noConfirmMessages1[9];
+      response1.style.color = "#ffffff";
+      response1.style.fontSize = "2.8rem";
+      response1.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
 
-    // Trang 2 - 20/20
+      overlay.classList.add('sad');
+      rain.classList.add('active');
+      createRainDrops();
+      buttons1.style.display = "none";
+      restartBtnBig.style.display = "block";
+      animeGirl1.src = angryImg;
+    }
+
+    yesBtn1.addEventListener('click', () => {
+      yesCount1++;
+      noCount1 = 0;
+
+      if (yesCount1 < 10) {
+        question1.textContent = yesConfirmMessages1[yesCount1 - 1];
+        response1.textContent = "";
+        animeGirl1.src = (yesCount1 < 5 ? normalImg : happyImg);
+        createHearts(10 + yesCount1 * 5);
+      } else {
+        question1.textContent = yesConfirmMessages1[9];
+        document.getElementById('happyPopup').style.display = "block";
+        animeGirl1.src = happyImg;
+        createHearts(100);
+        yesBtn1.disabled = true;
+        noBtn1.disabled = true;
+      }
+    });
+
+    noBtn1.addEventListener('click', () => {
+      noCount1++;
+      yesCount1 = 0;
+
+      if (noCount1 < 10) {
+        question1.textContent = noConfirmMessages1[noCount1 - 1];
+        response1.textContent = "";
+        if (noCount1 < 4) animeGirl1.src = normalImg;
+        else if (noCount1 < 8) animeGirl1.src = sadImg;
+        else animeGirl1.src = angryImg;
+
+        const rect = container.getBoundingClientRect();
+        const maxX = rect.width - 150;
+        const maxY = rect.height - 100;
+        const x = Math.random() * maxX + 30;
+        const y = Math.random() * maxY + 100;
+
+        noBtn1.style.position = "absolute";
+        noBtn1.style.left = `${x}px`;
+        noBtn1.style.top = `${y}px`;
+      } else {
+        goDoi();
+      }
+    });
+
+    // ==================== TRANG 2 - TROLL 20/20 ====================
+    const animeGirl2 = document.getElementById('animeGirl2');
+    const yesBtn2 = document.getElementById('yesBtn2');
+    const noBtn2 = document.getElementById('noBtn2');
+    const question2 = document.getElementById('question2');
+    const response2 = document.getElementById('response2');
+    const buttons2 = document.getElementById('buttons2');
+
     let noCount2 = 0;
     let yesCount2 = 0;
 
@@ -500,8 +629,10 @@
       yesCount2 = 0;
       question2.textContent = "Bạn có thích tớ không? (lần 2, troll nặng hơn) 🥺";
       response2.textContent = "";
+      response2.style.color = "";
+      response2.style.fontSize = "";
       buttons2.style.display = "flex";
-      container.style.opacity = "1";
+      restartBtnBig.style.display = "none";
       overlay.classList.remove('sad');
       rain.classList.remove('active');
       rain.innerHTML = "";
@@ -549,14 +680,40 @@
         noBtn2.style.left = `${x}px`;
         noBtn2.style.top = `${y}px`;
       } else {
-        goDoi(); // dùng chung dỗi
+        question2.textContent = "";
+        response2.innerHTML = noConfirmMessages2[19];
+        response2.style.color = "#ffffff";
+        response2.style.fontSize = "2.8rem";
+        response2.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
+
+        overlay.classList.add('sad');
+        rain.classList.add('active');
+        createRainDrops();
+        buttons2.style.display = "none";
+        restartBtnBig.style.display = "block";
+        animeGirl2.src = angryImg;
       }
     });
 
-    // Giữ nguyên code chung (hearts, rain, popup, restart...)
-    // ... (copy từ code trước) ...
+    // Restart chung
+    restartBtnBig.addEventListener('click', () => {
+      if (!page2.classList.contains('hidden')) {
+        resetGame2();
+      } else {
+        resetGame1();
+      }
+    });
 
-    animeGirl.src = normalImg;
+    restartBtnFixed.addEventListener('click', () => {
+      if (!page2.classList.contains('hidden')) {
+        resetGame2();
+      } else {
+        resetGame1();
+      }
+    });
+
+    // Load ảnh
+    animeGirl1.src = normalImg;
     animeGirl2.src = normalImg;
   </script>
 </body>
