@@ -20,7 +20,6 @@
       text-align: center;
       overflow: hidden;
       position: relative;
-      transition: background 2s ease;
     }
 
     /* Đồng hồ VN */
@@ -46,9 +45,10 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       max-width: 700px;
       animation: float 6s ease-in-out infinite;
-      margin: 80px 20px 120px;
+      margin: 80px 20px 140px 20px;
       transition: all 1s ease;
       z-index: 5;
+      position: relative;
     }
 
     @keyframes float {
@@ -57,7 +57,6 @@
       100% { transform: translateY(0); }
     }
 
-    /* Anime Girl */
     #animeGirl {
       width: 300px;
       height: 300px;
@@ -76,6 +75,7 @@
       gap: 30px;
       justify-content: center;
       margin-top: 40px;
+      flex-wrap: wrap;
     }
 
     button {
@@ -90,12 +90,12 @@
     }
 
     #yesBtn { background: #ff6b9d; color: white; }
-    #noBtn { background: #ff8fab; color: white; position: relative; }
-    button:hover { transform: scale(1.1); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+    #noBtn { background: #ff8fab; color: white; position: absolute; z-index: 10; }
+    button:hover { transform: scale(1.1); }
 
-    #response { font-size: 2.2rem; margin-top: 30px; min-height: 80px; transition: all 1s; }
+    #response { font-size: 2.2rem; margin-top: 30px; min-height: 80px; }
 
-    /* Overlay đen + mưa */
+    /* Overlay + mưa */
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -117,8 +117,8 @@
     }
     .rain.active { opacity: 1; }
 
-    /* Nút Restart */
-    #restartBtn {
+    /* Nút Restart lớn khi dỗi */
+    #restartBtnBig {
       display: none;
       padding: 30px 70px;
       font-size: 2.8rem;
@@ -128,10 +128,30 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       animation: pulse 1.5s infinite;
       z-index: 20;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
+
+    /* Nút Restart cố định góc phải dưới */
+    #restartBtnFixed {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      padding: 15px 30px;
+      font-size: 1.6rem;
+      background: #ff6b9d;
+      color: white;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.15); }
+      50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
 
@@ -155,7 +175,7 @@
     }
 
     .popup h2 { font-size: 3rem; margin: 0 0 20px; }
-    .popup p { font-size: 2rem; margin: 20px 0; }
+    .popup p { font-size: 2rem; }
     .sad-popup h2 { color: #5352ed; }
     .happy-popup h2 { color: #ff4757; }
 
@@ -171,7 +191,7 @@
       100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
-    /* FOOTER SIÊU NỔI BẬT */
+    /* Footer */
     footer {
       position: fixed;
       bottom: 20px;
@@ -180,25 +200,14 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: #ff4757;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 12px 30px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 40px;
       border-radius: 50px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       z-index: 9999;
-      transition: opacity 1s ease, transform 0.5s ease;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
 
-    footer:hover {
-      transform: translateX(-50%) scale(1.1);
-    }
-
-    .vn-flag {
-      font-size: 2rem;
-      margin: 0 8px;
-      animation: wave 2s infinite linear;
-    }
-
+    .vn-flag { font-size: 2rem; margin: 0 8px; animation: wave 2s infinite linear; }
     @keyframes wave {
       0%, 100% { transform: rotate(0deg); }
       25% { transform: rotate(10deg); }
@@ -212,10 +221,16 @@
   </style>
 </head>
 <body>
+  <!-- Nhạc nền The Builder - Kevin MacLeod -->
+  <audio id="backgroundMusic" loop autoplay volume="0.3">
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/Oddities/Kevin_MacLeod_-_The_Builder.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ nhạc nền huhu 🥺
+  </audio>
+
   <!-- Đồng hồ -->
   <div class="clock">
     <div>🇻🇳 Việt Nam</div>
-    <div id="time" style="font-size: 1.8rem; margin-top: 5px;"></div>
+    <div id="time" style="font-size: 1.8rem; margin-top: 5px;">Đang tải...</div>
   </div>
 
   <!-- Overlay + mưa + tim -->
@@ -234,41 +249,45 @@
     </div>
 
     <p id="response"></p>
-
-    <button id="restartBtn">Restart lại đi mà 🥺</button>
   </div>
 
-  <!-- Popup buồn -->
+  <!-- Nút Restart lớn khi dỗi -->
+  <button id="restartBtnBig">Restart lại đi mà 🥺</button>
+
+  <!-- Nút Restart cố định góc phải dưới -->
+  <button id="restartBtnFixed">🔄 Restart</button>
+
+  <!-- Popup -->
   <div class="popup sad-popup" id="sadPopup">
     <h2>Hu hu hu 😭💔</h2>
     <p>Lại không thích tớ nữa hả?<br>Tớ buồn muốn chết luôn rồi đó 🥺🥺</p>
     <button onclick="closePopup('sadPopup')">Đóng</button>
   </div>
 
-  <!-- Popup vui -->
   <div class="popup happy-popup" id="happyPopup">
     <h2>YAYYYY!!! 🥰💕💖</h2>
     <p>OMG TỚ BIẾT BẠN THÍCH TỚ MÀ!!!<br>Hihi yêu bạn nhất trên đời luôn áaaa~ ❤️❤️❤️</p>
     <button onclick="closePopup('happyPopup')">Hihi cảm ơn nhaaa~</button>
   </div>
 
-  <!-- FOOTER ĐẸP LUN LINH -->
   <footer id="footer">
     Made in VN <span class="vn-flag">🇻🇳</span> 
-    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️
+    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️<br>
+    Music: "The Builder" by Kevin MacLeod (incompetech.com) • Licensed under CC BY 3.0
   </footer>
 
   <script>
-    // Đồng hồ Việt Nam
+    // Đồng hồ Việt Nam đúng định dạng
     function updateVietnamTime() {
       const now = new Date();
       const vietnamTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
       const hours = String(vietnamTime.getHours()).padStart(2, '0');
       const minutes = String(vietnamTime.getMinutes()).padStart(2, '0');
       const seconds = String(vietnamTime.getSeconds()).padStart(2, '0');
-      const day = vietnamTime.getDate();
-      const month = vietnamTime.getMonth() + 1;
+      const day = String(vietnamTime.getDate()).padStart(2, '0');
+      const month = String(vietnamTime.getMonth() + 1).padStart(2, '0');
       const year = vietnamTime.getFullYear();
+
       document.getElementById('time').textContent = `\( {hours}: \){minutes}:${seconds} | \( {day}/ \){month}/${year}`;
     }
     updateVietnamTime();
@@ -283,14 +302,14 @@
     const animeGirl = document.getElementById('animeGirl');
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
-    const restartBtn = document.getElementById('restartBtn');
+    const restartBtnBig = document.getElementById('restartBtnBig');
+    const restartBtnFixed = document.getElementById('restartBtnFixed');
     const question = document.getElementById('question');
     const response = document.getElementById('response');
     const container = document.getElementById('container');
     const overlay = document.getElementById('overlay');
     const rain = document.getElementById('rain');
     const hearts = document.getElementById('hearts');
-    const footer = document.getElementById('footer');
     const buttons = document.getElementById('buttons');
 
     let noCount = 0;
@@ -305,22 +324,23 @@
       "Tớ khóc thật rồi đó 💔"
     ];
 
+    // Giới hạn né trong container
+    function getContainerRect() {
+      return container.getBoundingClientRect();
+    }
+
     function resetGame() {
       noCount = 0;
       hasDoiOnce = false;
       question.textContent = "Bạn có thích tớ không? 🥺";
       response.textContent = "";
-      response.style.color = "";
       buttons.style.display = "flex";
-      restartBtn.style.display = "none";
+      restartBtnBig.style.display = "none";
       container.style.opacity = "1";
-      footer.style.opacity = "1";
       overlay.classList.remove('sad');
       rain.classList.remove('active');
       rain.innerHTML = "";
-      noBtn.style.position = "relative";
-      noBtn.style.left = "auto";
-      noBtn.style.top = "auto";
+      noBtn.style.position = "static";
       animeGirl.src = normalImg;
     }
 
@@ -336,8 +356,7 @@
       createRainDrops();
       container.style.opacity = "0.2";
       buttons.style.display = "none";
-      footer.style.opacity = "0.7"; // vẫn thấy footer khi dỗi
-      restartBtn.style.display = "block";
+      restartBtnBig.style.display = "block";
       animeGirl.src = angryImg;
     }
 
@@ -355,9 +374,13 @@
         response.textContent = sadMessages[noCount - 1];
         response.style.color = "#5352ed";
 
+        const rect = getContainerRect();
+        const maxX = rect.width - 150;
+        const maxY = rect.height - 100;
+        const x = Math.random() * maxX + 30;
+        const y = Math.random() * maxY + 100;
+
         noBtn.style.position = "absolute";
-        const x = Math.random() * (window.innerWidth - 200);
-        const y = Math.random() * (window.innerHeight - 200);
         noBtn.style.left = `${x}px`;
         noBtn.style.top = `${y}px`;
       } else {
@@ -365,9 +388,8 @@
       }
     });
 
-    restartBtn.addEventListener('click', () => {
-      resetGame();
-    });
+    restartBtnBig.addEventListener('click', resetGame);
+    restartBtnFixed.addEventListener('click', resetGame);
 
     setInterval(() => {
       if (hasDoiOnce && noCount >= sadMessages.length && !overlay.classList.contains('sad')) {
@@ -408,8 +430,9 @@
       }
     }
 
-    // Load ảnh mặc định
+    // Load ảnh + thử autoplay nhạc (mobile cần click đầu)
     animeGirl.src = normalImg;
+    document.getElementById('backgroundMusic').play().catch(() => console.log("Autoplay bị chặn, cần tương tác đầu tiên nha~"));
   </script>
 </body>
 </html>
