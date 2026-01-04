@@ -77,7 +77,6 @@
       transition: all 0.5s ease;
     }
 
-    /* Nút Shop luôn hiện */
     #shopBtn {
       position: absolute;
       top: 130px;
@@ -92,6 +91,18 @@
       border: 3px solid #ff6b81;
       cursor: pointer;
       z-index: 10;
+    }
+
+    .page {
+      width: 100%;
+      opacity: 1;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .page.hidden {
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
     }
 
     .container {
@@ -114,7 +125,7 @@
       100% { transform: translateY(0); }
     }
 
-    #animeGirl {
+    .animeGirl {
       width: 100%;
       max-width: 300px;
       height: auto;
@@ -168,12 +179,13 @@
       min-width: 120px;
     }
 
-    #yesBtn { background: #ff6b9d; color: white; }
-    #noBtn { background: #ff8fab; color: white; position: absolute; z-index: 10; }
+    .yesBtn { background: #ff6b9d; color: white; }
+    .noBtn { background: #ff8fab; color: white; position: absolute; z-index: 10; }
     #giveUpBtn { background: #95a5a6; color: white; margin-top: 20px; display: none; }
+    .navBtn { background: #9b59b6; color: white; margin-top: 20px; }
     button:hover { transform: scale(1.1); }
 
-    #response {
+    .response {
       font-size: clamp(1.6rem, 5vw, 2.2rem);
       margin-top: 30px;
       min-height: 80px;
@@ -346,29 +358,56 @@
   <div class="rain" id="rain"></div>
   <div class="hearts" id="hearts"></div>
 
-  <div class="container" id="container">
-    <img id="animeGirl" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Anime Girl ♡">
-    <h1>ANIME GIRL HÀI HƯỚC VCL ♡</h1>
-    <p class="subtitle">Đây là câu hỏi vui thôi chứ không có ý gì hết nha! 😆</p>
-    <p id="question">Bạn có thích tớ không? 🥺</p>
-    
-    <div class="buttons" id="buttons">
-      <button id="yesBtn">Có ❤️</button>
-      <button id="noBtn">Không 😭</button>
+  <!-- Trang 1 -->
+  <div id="page1" class="page">
+    <div class="container">
+      <img class="animeGirl" id="animeGirl1" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Anime Girl ♡">
+      <h1>TRANG 1 - CÂU HỎI CHÍNH ♡</h1>
+      <p class="subtitle">Đây là câu hỏi vui thôi chứ không có ý gì hết nha! 😆</p>
+      <p id="question1">Bạn có thích tớ không? 🥺</p>
+      
+      <div class="buttons" id="buttons1">
+        <button class="yesBtn" id="yesBtn1">Có ❤️</button>
+        <button class="noBtn" id="noBtn1">Không 😭</button>
+      </div>
+
+      <button id="giveUpBtn1">Từ bỏ huhu 😞</button>
+
+      <p class="response" id="response1"></p>
+
+      <button id="toPage2Btn" class="navBtn">Đi tới Trang 2 (miễn phí) ➡️</button>
     </div>
+  </div>
 
-    <button id="giveUpBtn">Từ bỏ huhu 😞</button>
+  <!-- Trang 2 -->
+  <div id="page2" class="page hidden">
+    <div class="container">
+      <img class="animeGirl" id="animeGirl2" src="https://67.media.tumblr.com/eae7cf14e15e2604661263ecb8162b04/tumblr_o7y3gzFA7A1qz64n4o1_540.gif" alt="Thinking Anime Girl ♡">
+      <h1>TRANG 2 - CÂU HỎI MỚI SIÊU DRAMA ♡</h1>
+      <p class="subtitle">Nếu có câu hỏi mới sẽ cập nhật ở đây và trang tiếp theo (nếu có) 😏</p>
+      <p id="question2">Bạn có thích tớ không? (lần 2, troll nặng hơn) 🥺</p>
+      
+      <div class="buttons" id="buttons2">
+        <button class="yesBtn" id="yesBtn2">Có ❤️</button>
+        <button class="noBtn" id="noBtn2">Không 😭</button>
+      </div>
 
-    <p id="response"></p>
+      <button id="giveUpBtn2">Từ bỏ huhu 😞</button>
+
+      <p class="response" id="response2"></p>
+
+      <button id="toPage1Btn" class="navBtn">⬅️ Quay lại Trang 1</button>
+    </div>
   </div>
 
   <button id="restartBtnBig">Restart lại đi mà 🥺</button>
 
   <button id="restartBtnFixed">🔄 Restart</button>
 
+  <!-- Các popup -->
   <div class="popup info-popup" id="infoPopup">
     <h2>ℹ️ Đây là trò gì vậy?</h2>
-    <p>Đây là trò troll vui kiểu anime tsundere thôi á!<br>Không nghiêm túc gì hết, chơi cho vui nha 😏<br>Bấm Có hay Không đều bị troll 10 lần mới xong á huhu 😂🇻🇳</p>
+    <p>Đây là trò troll vui kiểu anime tsundere thôi á!<br>Không nghiêm túc gì hết, chơi cho vui nha 😏<br>Bấm Có hay Không đều bị troll nhiều lần mới xong á huhu 😂🇻🇳</p>
     <button onclick="closePopup('infoPopup')">OK hiểu rồi!</button>
   </div>
 
@@ -384,7 +423,6 @@
     <button onclick="closePopup('happyPopup')">Hihi cảm ơn nhaaa~</button>
   </div>
 
-  <!-- Popup xác nhận Từ bỏ -->
   <div class="popup sad-popup" id="giveUpConfirmPopup">
     <h2>Xác nhận từ bỏ?</h2>
     <p>Nếu muốn từ bỏ bạn sẽ phải bỏ 10 điểm ra để từ bỏ<br>Bạn đồng ý chứ?</p>
@@ -392,7 +430,6 @@
     <button onclick="closePopup('giveUpConfirmPopup')">Hủy</button>
   </div>
 
-  <!-- Popup Shop -->
   <div class="popup happy-popup" id="shopPopup">
     <h2>🗝️ MỞ KHÓA TRANG MỚI</h2>
     <p>Chọn trang bạn muốn unlock bằng điểm nha!</p>
@@ -402,14 +439,12 @@
     <button onclick="closePopup('shopPopup')">Đóng</button>
   </div>
 
-  <!-- Popup nghèo quá -->
   <div class="popup sad-popup" id="poorPopup">
     <h2>Bạn nghèo quá cày điểm đi rồi mở trang nhé 😏</h2>
     <p>Cố lên bấm 'Có' nhiều vào để giàu lên nha huhu 🥺</p>
     <button onclick="closePopup('poorPopup')">OK cố gắng!</button>
   </div>
 
-  <!-- Popup unlock thành công -->
   <div class="popup happy-popup" id="unlockSuccessPopup">
     <h2>UNLOCK THÀNH CÔNG!!! 🎉</h2>
     <p>Chúc mừng bạn đã mở khóa trang mới!<br>Chơi tiếp nào huhu 🥺💕</p>
@@ -427,54 +462,35 @@
     const sadImg = "https://media.tenor.com/6qJBThILOTcAAAAM/shikimoris-not-just-cute-shikimori.gif";
     const angryImg = "http://i.imgur.com/clpBDOi.gif";
 
-    const animeGirl = document.getElementById('animeGirl');
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const giveUpBtn = document.getElementById('giveUpBtn');
-    const restartBtnBig = document.getElementById('restartBtnBig');
-    const restartBtnFixed = document.getElementById('restartBtnFixed');
-    const infoBtn = document.getElementById('infoBtn');
-    const shopBtn = document.getElementById('shopBtn');
-    const question = document.getElementById('question');
-    const response = document.getElementById('response');
-    const container = document.getElementById('container');
+    // Elements chung
     const overlay = document.getElementById('overlay');
     const rain = document.getElementById('rain');
     const hearts = document.getElementById('hearts');
-    const buttons = document.getElementById('buttons');
+    const restartBtnBig = document.getElementById('restartBtnBig');
+    const restartBtnFixed = document.getElementById('restartBtnFixed');
     const scoreNumber = document.getElementById('scoreNumber');
+    const shopBtn = document.getElementById('shopBtn');
 
-    let noCount = 0;
-    let yesCount = 0;
-    let hasDoiOnce = false;
+    // Chuyển trang
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const toPage2Btn = document.getElementById('toPage2Btn');
+    const toPage1Btn = document.getElementById('toPage1Btn');
+
+    toPage2Btn.addEventListener('click', () => {
+      page1.classList.add('hidden');
+      setTimeout(() => page2.classList.remove('hidden'), 800);
+      resetGame2();
+    });
+
+    toPage1Btn.addEventListener('click', () => {
+      page2.classList.add('hidden');
+      setTimeout(() => page1.classList.remove('hidden'), 800);
+      resetGame1();
+    });
+
+    // Điểm số
     let score = 0;
-    let totalClicks = 0;
-
-    const yesConfirmMessages = [
-      "Bạn có chắc chắn thích tớ không? 🥺",
-      "Thật sự thích tớ luôn hả? Không đùa chứ? 😳",
-      "Ủa mà thích kiểu gì vậy ta? ❤️",
-      "Tớ xinh gái lắm hả mà thích dữ vậy? 😏",
-      "Thích tớ rồi thì chịu trách nhiệm nhaaa~ 💕",
-      "Hihi biết ngay mà, ai mà không thích tớ chứ 😌",
-      "Thích nhiều không? Nói tớ nghe coi~ 🥰",
-      "Từ giờ là của tớ rồi nha, không được đổi ý! 😤",
-      "Tớ cũng thích bạn lâu rồi áaa~ 🤭",
-      "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
-    ];
-
-    const noConfirmMessages = [
-      "Bạn chắc chắn không thích tớ hả? 🥺",
-      "Thật sự không thích luôn á? Không tiếc chứ? 😢",
-      "Tớ buồn lắm rồi đó, đổi ý đi mà huhu 😭",
-      "Không thích tớ thì thích ai rồi hả? Nói đi! 😤",
-      "Tớ dễ thương thế này mà không thích nổi sao? 🥹",
-      "Thôi màaaa, thích tớ chút xíu thôi cũng được mà 🥺🥺",
-      "Không thích thì tớ khóc thật đấy, chịu không? 💔",
-      "Bạn ác quá đi mất, tớ dỗi luôn bây giờ 😞",
-      "Được rồi... tớ buồn lắm luôn á huhuhu 😭",
-      "Tức bạn thiệt chớ cứ không chịu hoài, tớ dỗi luôn đây!!! 😭😭😭"
-    ];
 
     function updateScore(change) {
       score += change;
@@ -485,151 +501,12 @@
       setTimeout(() => scoreNumber.style.transform = 'scale(1)', 300);
     }
 
-    function getContainerRect() {
-      return container.getBoundingClientRect();
-    }
-
-    function resetGame() {
-      noCount = 0;
-      yesCount = 0;
-      totalClicks = 0;
-      hasDoiOnce = false;
-      question.textContent = "Bạn có thích tớ không? 🥺";
-      response.textContent = "";
-      response.style.color = "";
-      response.style.fontSize = "";
-      buttons.style.display = "flex";
-      giveUpBtn.style.display = "none";
-      restartBtnBig.style.display = "none";
-      container.style.opacity = "1";
-      overlay.classList.remove('sad');
-      rain.classList.remove('active');
-      rain.innerHTML = "";
-      noBtn.style.position = "static";
-      animeGirl.src = thinkingImg;
-    }
-
-    function goDoi() {
-      hasDoiOnce = true;
-      question.textContent = "";
-      response.innerHTML = noConfirmMessages[9];
-      response.style.color = "#ffffff";
-      response.style.fontSize = "2.8rem";
-      response.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
-
-      overlay.classList.add('sad');
-      rain.classList.add('active');
-      createRainDrops(200);
-      container.style.opacity = "0.2";
-      buttons.style.display = "none";
-      giveUpBtn.style.display = "none";
-      restartBtnBig.style.display = "block";
-      animeGirl.src = angryImg;
-      updateScore(-50000);
-    }
-
-    // Nút Từ bỏ với xác nhận trừ 10 điểm
-    giveUpBtn.addEventListener('click', () => {
-      document.getElementById('giveUpConfirmPopup').style.display = "block";
-    });
-
-    function confirmGiveUp() {
-      updateScore(-10);
-      closePopup('giveUpConfirmPopup');
-      resetGame();
-    }
-
-    yesBtn.addEventListener('click', () => {
-      yesCount++;
-      noCount = 0;
-      totalClicks++;
-
-      if (totalClicks >= 3) giveUpBtn.style.display = "block";
-
-      if (yesCount < 10) {
-        question.textContent = yesConfirmMessages[yesCount - 1];
-        response.textContent = "";
-        animeGirl.src = (yesCount < 5 ? thinkingImg : happyImg);
-        const pointGain = 100 + yesCount * 500;
-        updateScore(pointGain);
-        createHearts(10 + yesCount * 10);
-      } else {
-        question.textContent = yesConfirmMessages[9];
-        document.getElementById('happyPopup').style.display = "block";
-        animeGirl.src = happyImg;
-        createHearts(200);
-        updateScore(99999999 - score);
-        yesBtn.disabled = true;
-        noBtn.disabled = true;
-        giveUpBtn.style.display = "none";
-      }
-    });
-
-    noBtn.addEventListener('click', () => {
-      noCount++;
-      yesCount = 0;
-      totalClicks++;
-
-      if (totalClicks >= 3) giveUpBtn.style.display = "block";
-
-      if (noCount < 10) {
-        question.textContent = noConfirmMessages[noCount - 1];
-        response.textContent = "";
-        if (noCount <= 3) animeGirl.src = thinkingImg;
-        else if (noCount <= 6) animeGirl.src = sadImg;
-        else animeGirl.src = angryImg;
-
-        const pointLoss = - (100 + noCount * 500);
-        updateScore(pointLoss);
-
-        rain.innerHTML = "";
-        rain.classList.add('active');
-        const rainIntensity = 50 + noCount * 15;
-        createRainDrops(rainIntensity);
-
-        const rect = getContainerRect();
-        const maxX = rect.width - 150;
-        const maxY = rect.height - 100;
-        const x = Math.random() * maxX + 30;
-        const y = Math.random() * maxY + 100;
-
-        noBtn.style.position = "absolute";
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
-      } else {
-        goDoi();
-      }
-    });
-
-    shopBtn.addEventListener('click', () => {
-      document.getElementById('shopPopup').style.display = "block";
-    });
-
-    function tryUnlock(pageNum, cost) {
-      if (score >= cost) {
-        updateScore(-cost);
-        createHearts(150);
-        document.getElementById('unlockSuccessPopup').style.display = "block";
-        setTimeout(() => {
-          document.getElementById('unlockSuccessPopup').style.display = "none";
-        }, 2000);
-      } else {
-        document.getElementById('poorPopup').style.display = "block";
-      }
-      closePopup('shopPopup');
-    }
-
-    restartBtnBig.addEventListener('click', resetGame);
-    restartBtnFixed.addEventListener('click', resetGame);
-
-    infoBtn.addEventListener('click', () => {
-      document.getElementById('infoPopup').style.display = "block";
-    });
-
+    // Popup
     function closePopup(id) {
       document.getElementById(id).style.display = "none";
     }
 
+    // Hearts & Rain
     function createHearts(count) {
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
@@ -658,4 +535,353 @@
       }
     }
 
-    // Bắ
+    // ==================== TRANG 1 ====================
+    const animeGirl1 = document.getElementById('animeGirl1');
+    const yesBtn1 = document.getElementById('yesBtn1');
+    const noBtn1 = document.getElementById('noBtn1');
+    const giveUpBtn1 = document.getElementById('giveUpBtn1');
+    const question1 = document.getElementById('question1');
+    const response1 = document.getElementById('response1');
+    const buttons1 = document.getElementById('buttons1');
+
+    let noCount1 = 0;
+    let yesCount1 = 0;
+    let totalClicks1 = 0;
+
+    const yesConfirmMessages1 = [
+      "Bạn có chắc chắn thích tớ không? 🥺",
+      "Thật sự thích tớ luôn hả? Không đùa chứ? 😳",
+      "Ủa mà thích kiểu gì vậy ta? ❤️",
+      "Tớ xinh gái lắm hả mà thích dữ vậy? 😏",
+      "Thích tớ rồi thì chịu trách nhiệm nhaaa~ 💕",
+      "Hihi biết ngay mà, ai mà không thích tớ chứ 😌",
+      "Thích nhiều không? Nói tớ nghe coi~ 🥰",
+      "Từ giờ là của tớ rồi nha, không được đổi ý! 😤",
+      "Tớ cũng thích bạn lâu rồi áaa~ 🤭",
+      "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
+    ];
+
+    const noConfirmMessages1 = [
+      "Bạn chắc chắn không thích tớ hả? 🥺",
+      "Thật sự không thích luôn á? Không tiếc chứ? 😢",
+      "Tớ buồn lắm rồi đó, đổi ý đi mà huhu 😭",
+      "Không thích tớ thì thích ai rồi hả? Nói đi! 😤",
+      "Tớ dễ thương thế này mà không thích nổi sao? 🥹",
+      "Thôi màaaa, thích tớ chút xíu thôi cũng được mà 🥺🥺",
+      "Không thích thì tớ khóc thật đấy, chịu không? 💔",
+      "Bạn ác quá đi mất, tớ dỗi luôn bây giờ 😞",
+      "Được rồi... tớ buồn lắm luôn á huhuhu 😭",
+      "Tức bạn thiệt chớ cứ không chịu hoài, tớ dỗi luôn đây!!! 😭😭😭"
+    ];
+
+    function resetGame1() {
+      noCount1 = 0;
+      yesCount1 = 0;
+      totalClicks1 = 0;
+      question1.textContent = "Bạn có thích tớ không? 🥺";
+      response1.textContent = "";
+      buttons1.style.display = "flex";
+      giveUpBtn1.style.display = "none";
+      restartBtnBig.style.display = "none";
+      overlay.classList.remove('sad');
+      rain.classList.remove('active');
+      rain.innerHTML = "";
+      noBtn1.style.position = "static";
+      animeGirl1.src = thinkingImg;
+    }
+
+    function goDoi1() {
+      question1.textContent = "";
+      response1.innerHTML = noConfirmMessages1[9];
+      response1.style.color = "#ffffff";
+      response1.style.fontSize = "2.8rem";
+      response1.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
+
+      overlay.classList.add('sad');
+      rain.classList.add('active');
+      createRainDrops(200);
+      buttons1.style.display = "none";
+      giveUpBtn1.style.display = "none";
+      restartBtnBig.style.display = "block";
+      animeGirl1.src = angryImg;
+      updateScore(-50000);
+    }
+
+    yesBtn1.addEventListener('click', () => {
+      yesCount1++;
+      noCount1 = 0;
+      totalClicks1++;
+
+      if (totalClicks1 >= 3) giveUpBtn1.style.display = "block";
+
+      if (yesCount1 < 10) {
+        question1.textContent = yesConfirmMessages1[yesCount1 - 1];
+        response1.textContent = "";
+        animeGirl1.src = (yesCount1 < 5 ? thinkingImg : happyImg);
+        updateScore(100 + yesCount1 * 500);
+        createHearts(10 + yesCount1 * 10);
+      } else {
+        question1.textContent = yesConfirmMessages1[9];
+        document.getElementById('happyPopup').style.display = "block";
+        animeGirl1.src = happyImg;
+        createHearts(200);
+        updateScore(99999999 - score);
+        yesBtn1.disabled = true;
+        noBtn1.disabled = true;
+        giveUpBtn1.style.display = "none";
+      }
+    });
+
+    noBtn1.addEventListener('click', () => {
+      noCount1++;
+      yesCount1 = 0;
+      totalClicks1++;
+
+      if (totalClicks1 >= 3) giveUpBtn1.style.display = "block";
+
+      if (noCount1 < 10) {
+        question1.textContent = noConfirmMessages1[noCount1 - 1];
+        response1.textContent = "";
+        if (noCount1 <= 3) animeGirl1.src = thinkingImg;
+        else if (noCount1 <= 6) animeGirl1.src = sadImg;
+        else animeGirl1.src = angryImg;
+
+        updateScore(-(100 + noCount1 * 500));
+
+        rain.innerHTML = "";
+        rain.classList.add('active');
+        const rainIntensity = 50 + noCount1 * 15;
+        createRainDrops(rainIntensity);
+
+        const rect = container.getBoundingClientRect();
+        const maxX = rect.width - 150;
+        const maxY = rect.height - 100;
+        const x = Math.random() * maxX + 30;
+        const y = Math.random() * maxY + 100;
+
+        noBtn1.style.position = "absolute";
+        noBtn1.style.left = `${x}px`;
+        noBtn1.style.top = `${y}px`;
+      } else {
+        goDoi1();
+      }
+    });
+
+    giveUpBtn1.addEventListener('click', () => {
+      document.getElementById('giveUpConfirmPopup').style.display = "block";
+    });
+
+    // ==================== TRANG 2 ====================
+    const animeGirl2 = document.getElementById('animeGirl2');
+    const yesBtn2 = document.getElementById('yesBtn2');
+    const noBtn2 = document.getElementById('noBtn2');
+    const giveUpBtn2 = document.getElementById('giveUpBtn2');
+    const question2 = document.getElementById('question2');
+    const response2 = document.getElementById('response2');
+    const buttons2 = document.getElementById('buttons2');
+
+    let noCount2 = 0;
+    let yesCount2 = 0;
+    let totalClicks2 = 0;
+
+    const yesConfirmMessages2 = [
+      "Bạn có chắc chắn thích tớ thật không? 🥺",
+      "Thật sự thích tớ luôn hả? Không đùa chứ anh/em ơi? 😳",
+      "Ủa thích tớ kiểu crush lâu năm hả? ❤️",
+      "Tớ xinh gái/dễ thương lắm mà thích dữ vậy? 😏",
+      "Thích rồi thì phải chịu trách nhiệm với tớ nhaaa~ 💕",
+      "Hihi biết ngay mà, ai gặp tớ cũng thích hết trơn! 😌",
+      "Thích nhiều không? Kể tớ nghe coi nào~ 🥰",
+      "Từ giờ là của tớ rồi, không được thích ai khác đâu! 😤",
+      "Tớ cũng thích bạn từ lâu rồi áaa, ngại ghê~ 🤭",
+      "Thích kiểu muốn cưới luôn hả? 😆",
+      "Thích tớ hơn trà sữa không? Nói thật đi! 🧋",
+      "Thích rồi thì nhắn tin tớ mỗi ngày nha, không được lơ! 📱",
+      "Hihi crush tớ rồi phải không? Đừng chối! 😘",
+      "Thích tớ thì phải dẫn đi ăn kem chứ? 🍦",
+      "Tớ biết mà, charm của tớ vô địch! ✨",
+      "Thích nhiều đến mức mơ thấy tớ luôn hả? 🌙",
+      "Ok thích rồi thì làm người yêu tớ đi! 💑",
+      "Thích kiểu \"anh ơi em thích anh\" hả? 😜",
+      "Tớ vui quá à, thích nhau rồi nhaaa~ 🎉",
+      "YAYYYY!!! Thích nhau rồi, yêu tớ mãi nhé!!! 💖💖💖"
+    ];
+
+    const noConfirmMessages2 = [
+      "Bạn chắc chắn không thích tớ thật hả? 🥺",
+      "Thật sự không thích luôn á? Không tiếc hả anh/em? 😢",
+      "Tớ buồn lắm rồi đó, đổi ý đi mà huhu 😭",
+      "Không thích tớ thì thích ai rồi? Nói mau! 😤",
+      "Tớ dễ thương thế này mà không thích nổi sao? 🥹",
+      "Thôi màaaa, thích tớ chút xíu thôi cũng được mà 🥺🥺",
+      "Không thích thì tớ khóc thật đấy, chịu không? 💔",
+      "Bạn ác quá đi mất, tớ dỗi luôn bây giờ 😞",
+      "Được rồi... tớ buồn lắm luôn á huhuhu 😭",
+      "Không thích thì thôi, tớ đi tìm người khác thích tớ đây! 😠",
+      "Ủa không thích mà nhìn tớ hoài làm chi? 👀",
+      "Không thích thì đừng nhắn tin nữa nha, tớ giận! 📵",
+      "Tớ biết mà, chắc bạn thích trà sữa hơn tớ rồi 🧋💔",
+      "Không thích thì trả lại tim tớ đi! ❤️",
+      "Huhu không thích thì tớ block bạn luôn đó! 🚫",
+      "Bạn chắc chưa? Tớ xinh thế này mà! 😩",
+      "Không thích thì tớ đi ăn kem một mình vậy 😭🍦",
+      "Ác quá, tớ khóc thật rồi đây huhu 😭😭",
+      "Được thôi, không thích thì biến đi, tớ dỗi!!! 😡",
+      "Tức bạn thiệt chớ cứ không chịu hoài, tớ dỗi luôn đây!!! 😭😭😭😭"
+    ];
+
+    function resetGame2() {
+      noCount2 = 0;
+      yesCount2 = 0;
+      totalClicks2 = 0;
+      question2.textContent = "Bạn có thích tớ không? (lần 2, troll nặng hơn) 🥺";
+      response2.textContent = "";
+      buttons2.style.display = "flex";
+      giveUpBtn2.style.display = "none";
+      restartBtnBig.style.display = "none";
+      overlay.classList.remove('sad');
+      rain.classList.remove('active');
+      rain.innerHTML = "";
+      noBtn2.style.position = "static";
+      animeGirl2.src = thinkingImg;
+    }
+
+    function goDoi2() {
+      question2.textContent = "";
+      response2.innerHTML = noConfirmMessages2[19];
+      response2.style.color = "#ffffff";
+      response2.style.fontSize = "2.8rem";
+      response2.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
+
+      overlay.classList.add('sad');
+      rain.classList.add('active');
+      createRainDrops(250);
+      buttons2.style.display = "none";
+      giveUpBtn2.style.display = "none";
+      restartBtnBig.style.display = "block";
+      animeGirl2.src = angryImg;
+      updateScore(-100000);
+    }
+
+    yesBtn2.addEventListener('click', () => {
+      yesCount2++;
+      noCount2 = 0;
+      totalClicks2++;
+
+      if (totalClicks2 >= 3) giveUpBtn2.style.display = "block";
+
+      if (yesCount2 < 20) {
+        question2.textContent = yesConfirmMessages2[yesCount2 - 1];
+        response2.textContent = "";
+        animeGirl2.src = (yesCount2 < 10 ? thinkingImg : happyImg);
+        updateScore(200 + yesCount2 * 1000);
+        createHearts(15 + yesCount2 * 15);
+      } else {
+        question2.textContent = yesConfirmMessages2[19];
+        document.getElementById('happyPopup').style.display = "block";
+        animeGirl2.src = happyImg;
+        createHearts(300);
+        updateScore(99999999 - score);
+        yesBtn2.disabled = true;
+        noBtn2.disabled = true;
+        giveUpBtn2.style.display = "none";
+      }
+    });
+
+    noBtn2.addEventListener('click', () => {
+      noCount2++;
+      yesCount2 = 0;
+      totalClicks2++;
+
+      if (totalClicks2 >= 3) giveUpBtn2.style.display = "block";
+
+      if (noCount2 < 20) {
+        question2.textContent = noConfirmMessages2[noCount2 - 1];
+        response2.textContent = "";
+        if (noCount2 <= 6) animeGirl2.src = thinkingImg;
+        else if (noCount2 <= 13) animeGirl2.src = sadImg;
+        else animeGirl2.src = angryImg;
+
+        updateScore(-(200 + noCount2 * 1000));
+
+        rain.innerHTML = "";
+        rain.classList.add('active');
+        const rainIntensity = 80 + noCount2 * 20;
+        createRainDrops(rainIntensity);
+
+        const rect = container.getBoundingClientRect();
+        const maxX = rect.width - 150;
+        const maxY = rect.height - 100;
+        const x = Math.random() * maxX + 30;
+        const y = Math.random() * maxY + 100;
+
+        noBtn2.style.position = "absolute";
+        noBtn2.style.left = `${x}px`;
+        noBtn2.style.top = `${y}px`;
+      } else {
+        goDoi2();
+      }
+    });
+
+    giveUpBtn2.addEventListener('click', () => {
+      document.getElementById('giveUpConfirmPopup').style.display = "block";
+    });
+
+    // Từ bỏ chung (cả 2 trang)
+    function confirmGiveUp() {
+      updateScore(-10);
+      closePopup('giveUpConfirmPopup');
+      if (!page2.classList.contains('hidden')) {
+        resetGame2();
+      } else {
+        resetGame1();
+      }
+    }
+
+    // Shop
+    shopBtn.addEventListener('click', () => {
+      document.getElementById('shopPopup').style.display = "block";
+    });
+
+    function tryUnlock(pageNum, cost) {
+      if (score >= cost) {
+        updateScore(-cost);
+        createHearts(150);
+        document.getElementById('unlockSuccessPopup').style.display = "block";
+        setTimeout(() => {
+          document.getElementById('unlockSuccessPopup').style.display = "none";
+        }, 2000);
+      } else {
+        document.getElementById('poorPopup').style.display = "block";
+      }
+      closePopup('shopPopup');
+    }
+
+    // Restart chung
+    restartBtnBig.addEventListener('click', () => {
+      if (!page2.classList.contains('hidden')) {
+        resetGame2();
+      } else {
+        resetGame1();
+      }
+    });
+
+    restartBtnFixed.addEventListener('click', () => {
+      if (!page2.classList.contains('hidden')) {
+        resetGame2();
+      } else {
+        resetGame1();
+      }
+    });
+
+    infoBtn.addEventListener('click', () => {
+      document.getElementById('infoPopup').style.display = "block";
+    });
+
+    // Bắt đầu
+    animeGirl1.src = thinkingImg;
+    animeGirl2.src = thinkingImg;
+    updateScore(0);
+  </script>
+</body>
+</html>
