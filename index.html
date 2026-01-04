@@ -191,7 +191,6 @@
       100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
-    /* Footer */
     footer {
       position: fixed;
       bottom: 20px;
@@ -293,6 +292,21 @@
 
     let noCount = 0;
     let hasDoiOnce = false;
+    let yesCount = 0;
+
+    // 10 câu xác nhận "Có" - đã sửa câu 4 cho chuẩn vibe girl
+    const yesConfirmMessages = [
+      "Bạn có chắc chắn thích tớ không? 🥺",
+      "Thật sự thích tớ luôn hả? Không đùa chứ? 😳",
+      "Ủa mà thích kiểu gì vậy ta? ❤️",
+      "Tớ xinh gái lắm hả mà thích dữ vậy? 😏", // <-- Sửa ở đây nha!
+      "Thích tớ rồi thì chịu trách nhiệm nhaaa~ 💕",
+      "Hihi biết ngay mà, ai mà không thích tớ chứ 😌",
+      "Thích nhiều không? Nói tớ nghe coi~ 🥰",
+      "Từ giờ là của tớ rồi nha, không được đổi ý! 😤",
+      "Tớ cũng thích bạn lâu rồi áaa~ 🤭",
+      "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
+    ];
 
     const sadMessages = [
       "Thích tớ đi mà 🥺",
@@ -309,6 +323,7 @@
 
     function resetGame() {
       noCount = 0;
+      yesCount = 0;
       hasDoiOnce = false;
       question.textContent = "Bạn có thích tớ không? 🥺";
       response.textContent = "";
@@ -342,12 +357,25 @@
     }
 
     yesBtn.addEventListener('click', () => {
-      document.getElementById('happyPopup').style.display = "block";
-      animeGirl.src = happyImg;
-      createHearts(60);
+      yesCount++;
+
+      if (yesCount < 10) {
+        question.textContent = yesConfirmMessages[yesCount - 1];
+        response.textContent = "";
+        animeGirl.src = happyImg;
+        createHearts(10);
+      } else {
+        question.textContent = yesConfirmMessages[9];
+        document.getElementById('happyPopup').style.display = "block";
+        animeGirl.src = happyImg;
+        createHearts(80);
+        yesBtn.disabled = true;
+        noBtn.disabled = true;
+      }
     });
 
     noBtn.addEventListener('click', () => {
+      yesCount = 0;
       noCount++;
       animeGirl.src = sadImg;
 
