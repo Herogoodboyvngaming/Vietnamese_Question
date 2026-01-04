@@ -324,11 +324,12 @@
   </footer>
 
   <script>
-    // Ảnh anime
-    const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif";
-    const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg";
-    const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg";
-    const angryImg = "https://media.tenor.com/3kvIVPYgTE8AAAAM/hmph-hmph-anime.gif";
+    // Ảnh anime thay đổi theo cảm xúc
+    const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif"; // cute bình thường
+    const thinkingImg = "https://i.pinimg.com/originals/8b/1f/0b/8b1f0b9e7a4d2d6e8f2a3b4c5d6e7f8g.jpg"; // tsundere nghĩ ngợi (thay link nếu có)
+    const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg"; // siêu vui
+    const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg"; // buồn khóc
+    const angryImg = "https://media.tenor.com/3kvIVPYgTE8AAAAM/hmph-hmph-anime.gif"; // giận dỗi
 
     const animeGirl = document.getElementById('animeGirl');
     const yesBtn = document.getElementById('yesBtn');
@@ -361,7 +362,7 @@
       "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
     ];
 
-    // 10 câu xác nhận "Không" - siêu drama buồn
+    // 10 câu xác nhận "Không"
     const noConfirmMessages = [
       "Bạn chắc chắn không thích tớ hả? 🥺",
       "Thật sự không thích luôn á? Không tiếc chứ? 😢",
@@ -400,7 +401,7 @@
     function goDoi() {
       hasDoiOnce = true;
       question.textContent = "";
-      response.innerHTML = noConfirmMessages[9]; // dùng câu cuối của noConfirm
+      response.innerHTML = noConfirmMessages[9];
       response.style.color = "#ffffff";
       response.style.fontSize = "2.8rem";
       response.style.textShadow = "2px 2px 10px rgba(0,0,0,0.8)";
@@ -414,35 +415,41 @@
       animeGirl.src = angryImg;
     }
 
-    // XỬ LÝ BẤM "CÓ" - xác nhận 10 lần
+    // Bấm "Có" - đổi ảnh theo mức độ xác nhận
     yesBtn.addEventListener('click', () => {
       yesCount++;
-      noCount = 0; // reset no nếu chuyển sang có
+      noCount = 0;
 
       if (yesCount < 10) {
         question.textContent = yesConfirmMessages[yesCount - 1];
         response.textContent = "";
-        animeGirl.src = happyImg;
-        createHearts(10);
+        // Đổi ảnh: càng nhiều lần càng vui
+        if (yesCount <= 3) animeGirl.src = thinkingImg;
+        else if (yesCount <= 7) animeGirl.src = normalImg;
+        else animeGirl.src = happyImg;
+        createHearts(10 + yesCount * 5); // tim bay càng nhiều
       } else {
         question.textContent = yesConfirmMessages[9];
         document.getElementById('happyPopup').style.display = "block";
         animeGirl.src = happyImg;
-        createHearts(80);
+        createHearts(100);
         yesBtn.disabled = true;
         noBtn.disabled = true;
       }
     });
 
-    // XỬ LÝ BẤM "KHÔNG" - xác nhận 10 lần mới dỗi
+    // Bấm "Không" - đổi ảnh theo mức độ xác nhận
     noBtn.addEventListener('click', () => {
       noCount++;
-      yesCount = 0; // reset yes nếu chuyển sang không
+      yesCount = 0;
 
       if (noCount < 10) {
         question.textContent = noConfirmMessages[noCount - 1];
         response.textContent = "";
-        animeGirl.src = sadImg;
+        // Đổi ảnh: càng nhiều lần càng buồn
+        if (noCount <= 3) animeGirl.src = thinkingImg;
+        else if (noCount <= 7) animeGirl.src = sadImg;
+        else animeGirl.src = angryImg;
 
         const rect = getContainerRect();
         const maxX = rect.width - 150;
@@ -500,6 +507,7 @@
       }
     }
 
+    // Load ảnh mặc định
     animeGirl.src = normalImg;
   </script>
 </body>
