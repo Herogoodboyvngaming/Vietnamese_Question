@@ -191,6 +191,7 @@
       100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
+    /* Footer */
     footer {
       position: fixed;
       bottom: 20px;
@@ -200,10 +201,12 @@
       font-weight: bold;
       color: #ff4757;
       background: rgba(255, 255, 255, 0.95);
-      padding: 12px 40px;
+      padding: 15px 40px;
       border-radius: 50px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       z-index: 9999;
+      text-align: center;
+      line-height: 1.6;
     }
 
     .vn-flag { font-size: 2rem; margin: 0 8px; animation: wave 2s infinite linear; }
@@ -263,16 +266,18 @@
     <button onclick="closePopup('happyPopup')">Hihi cảm ơn nhaaa~</button>
   </div>
 
+  <!-- Footer -->
   <footer id="footer">
-    Made in VN <span class="vn-flag">🇻🇳</span> 
-    Made by: Nguyễn Chí Dự <span class="vn-flag">🇻🇳</span>♥️
+    Made in VN <span class="vn-flag">🇻🇳</span><br>
+    Made by : Nguyễn Chí Dự <br>(owner web) ♥️<span class="vn-flag">🇻🇳</span>
   </footer>
 
   <script>
-    // ĐỒNG HỒ VIỆT NAM CHẠY ĐÚNG NGAY TỪ ĐẦU
-    const timeElement = document.getElementById('time');
-
+    // ==================== FIX THỜI GIAN VIỆT NAM CHẠY ĐÚNG 100% ====================
     function updateVietnamTime() {
+      const timeElement = document.getElementById('time');
+      if (!timeElement) return;
+
       const now = new Date();
       const vietnamTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
       const hours = String(vietnamTime.getHours()).padStart(2, '0');
@@ -285,10 +290,13 @@
       timeElement.textContent = `\( {hours}: \){minutes}:${seconds} | \( {day}/ \){month}/${year}`;
     }
 
-    updateVietnamTime();
-    setInterval(updateVietnamTime, 1000);
+    // Chạy khi trang load xong hoàn toàn
+    window.onload = function() {
+      updateVietnamTime();
+      setInterval(updateVietnamTime, 1000);
+    };
 
-    // Ảnh anime
+    // ==================== PHẦN CÒN LẠI GIỮ NGUYÊN ====================
     const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif";
     const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg";
     const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg";
