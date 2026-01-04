@@ -196,7 +196,7 @@
   <div class="hearts" id="hearts"></div>
 
   <div class="container" id="container">
-    <img id="animeGirl" src="https://img.freepik.com/premium-photo/beautiful-anime-girl-with-blush-color-hair-white-background_864588-34131.jpg?semt=ais_hybrid&w=740&q=80" alt="Anime Girl ♡">
+    <img id="animeGirl" src="https://w0.peakpx.com/wallpaper/251/987/HD-wallpaper-anime-girl-pink-hair-band-aid-shy-expression-blushes-twintails-anime.jpg" alt="Anime Girl ♡">
     <h1>ANIME GIRL HÀI HƯỚC VCL ♡</h1>
     <p id="question">Bạn có thích tớ không? 🥺</p>
     
@@ -245,11 +245,11 @@
     updateVietnamTime();
     setInterval(updateVietnamTime, 1000);
 
-    // Anime girl images
-    const normalImg = "https://img.freepik.com/premium-photo/beautiful-anime-girl-with-blush-color-hair-white-background_864588-34131.jpg?semt=ais_hybrid&w=740&q=80"; // pouting cute
-    const happyImg = "https://images.stockcake.com/public/a/7/d/a7d3e795-3268-4287-b94c-2e0ecdc3af79/pastel-anime-dreams-stockcake.jpg"; // happy excited
-    const sadImg = "https://media.craiyon.com/2025-09-09/Bdk5HBzvStKLure9ms6x-w.webp"; // crying sad
-    const angryImg = "https://media1.tenor.com/m/I59Tdlo-OIUAAAAC/d%E1%BB%97i.gif"; // dỗi angry
+    // Ảnh anime girl ổn định
+    const normalImg = "https://w0.peakpx.com/wallpaper/251/987/HD-wallpaper-anime-girl-pink-hair-band-aid-shy-expression-blushes-twintails-anime.jpg"; // cute blushing
+    const happyImg = "https://w0.peakpx.com/wallpaper/310/254/HD-wallpaper-sakura-miku-hatsune-miku-sakura-blossom-floral-cherry-blossom-blossom-excited-anime-anime-girl-vocaloids-long-hair-pink-vocaloid-sakura-female-miku-smile-twintails-happy-hatsune-girl.jpg"; // happy excited
+    const sadImg = "https://wallpapers.com/images/hd/pink-haired-depressed-anime-girl-mfkcgi1mrcehonbu.jpg"; // sad crying
+    const angryImg = "http://i.imgur.com/clpBDOi.gif"; // angry pouting tsundere gif
 
     const animeGirl = document.getElementById('animeGirl');
 
@@ -311,7 +311,7 @@
       buttons.style.display = "none";
       footer.style.opacity = "0.1";
       restartBtn.style.display = "block";
-      animeGirl.src = angryImg; // dỗi angry gif
+      animeGirl.src = angryImg;
     }
 
     yesBtn.addEventListener('click', () => {
@@ -322,7 +322,7 @@
 
     noBtn.addEventListener('click', () => {
       noCount++;
-      animeGirl.src = sadImg; // buồn khóc khi từ chối
+      animeGirl.src = sadImg;
 
       if (noCount < sadMessages.length) {
         response.textContent = sadMessages[noCount - 1];
@@ -342,8 +342,8 @@
       resetGame();
     });
 
-    // Nếu chơi lại mà vẫn không hoài → popup buồn
-    const checkSad = setInterval(() => {
+    // Check popup buồn khi chơi lại
+    setInterval(() => {
       if (hasDoiOnce && noCount >= sadMessages.length && !overlay.classList.contains('sad')) {
         document.getElementById('sadPopup').style.display = "block";
         animeGirl.src = sadImg;
@@ -386,6 +386,11 @@
       0% { transform: translateY(-100vh); }
       100% { transform: translateY(100vh); }
     }
+
+    // Load ảnh mặc định ngay khi mở trang
+    window.onload = () => {
+      animeGirl.src = normalImg;
+    };
   </script>
 </body>
 </html>
