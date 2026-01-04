@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anime Girl Meme Hài Hước VCL ♡</title>
+  <title>Anime Girl Troll Hài Hước VCL ♡</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@600&display=swap');
 
@@ -276,12 +276,12 @@
   <div class="rain" id="rain"></div>
   <div class="hearts" id="hearts"></div>
 
-  <!-- Các trang 1 đến 7 -->
+  <!-- Trang 1 -->
   <div id="page1" class="page">
     <div class="container">
       <img class="animeGirl" id="animeGirl1" src="https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif">
-      <h1>TRANG 1 - CÂU HỎI CHÍNH ♡</h1>
-      <p class="subtitle">Đây là câu hỏi vui thôi chứ không có ý gì hết nha! 😆</p>
+      <h1>TRANG 1 - BẮT ĐẦU TROLL ♡</h1>
+      <p class="subtitle">Câu hỏi vui thôi mà, trả lời đi nha 😆</p>
       <p id="question1">Bạn có thích tớ không? 🥺</p>
       <div class="buttons">
         <button class="yesBtn" onclick="handleYes(1)">Có ❤️</button>
@@ -292,8 +292,7 @@
     </div>
   </div>
 
-  <!-- Trang 2 đến 7 (hidden ban đầu, unlock bằng shop) -->
-  <!-- Ví dụ trang 2 -->
+  <!-- Trang 2 -->
   <div id="page2" class="page hidden">
     <div class="container">
       <img class="animeGirl" id="animeGirl2" src="https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif">
@@ -310,28 +309,56 @@
     </div>
   </div>
 
-  <!-- Các trang 3-7 tương tự, thay số trang và subtitle -->
+  <!-- Trang 3 -->
+  <div id="page3" class="page hidden">
+    <div class="container">
+      <img class="animeGirl" id="animeGirl3" src="https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif">
+      <h1>TRANG 3 - TROLL SIÊU NẶNG ♡</h1>
+      <p class="subtitle">30 lần troll drama max huhu 😭</p>
+      <p id="question3">Bạn có thích tớ không? (lần 3) 🥺</p>
+      <div class="buttons">
+        <button class="yesBtn" onclick="handleYes(3)">Có ❤️</button>
+        <button class="noBtn" onclick="handleNo(3)">Không 😭</button>
+      </div>
+      <p id="response3"></p>
+      <button class="navBtn" onclick="goToPage(2)">⬅️ Quay lại Trang 2</button>
+      <button class="navBtn" onclick="goToPage(4)">Đi tới Trang 4 (nếu unlock) ➡️</button>
+    </div>
+  </div>
 
-  <!-- Popup shop & other -->
+  <!-- Trang 4 -->
+  <div id="page4" class="page hidden">
+    <div class="container">
+      <img class="animeGirl" id="animeGirl4" src="https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif">
+      <h1>TRANG 4 - TROLL KINH ĐIỂN ♡</h1>
+      <p class="subtitle">40 lần troll cuối cùng, chịu nổi không? 😏</p>
+      <p id="question4">Bạn có thích tớ không? (lần cuối) 🥺</p>
+      <div class="buttons">
+        <button class="yesBtn" onclick="handleYes(4)">Có ❤️</button>
+        <button class="noBtn" onclick="handleNo(4)">Không 😭</button>
+      </div>
+      <p id="response4"></p>
+      <button class="navBtn" onclick="goToPage(3)">⬅️ Quay lại Trang 3</button>
+    </div>
+  </div>
+
+  <!-- Popup shop -->
   <div class="popup happy-popup" id="shopPopup">
     <h2>🗝️ SHOP UNLOCK TRANG MỚI</h2>
-    <p>Cày điểm bấm "Có" để unlock trang cao hơn nha huhu 🥺</p>
+    <p>Cày điểm bấm "Có" để unlock nha huhu 🥺</p>
     <button onclick="unlockPage(3, 100000)">Unlock Trang 3 - 100.000 điểm</button>
-    <button onclick="unlockPage(4, 250000)">Unlock Trang 4 - 250.000 điểm</button>
-    <button onclick="unlockPage(5, 500000)">Unlock Trang 5 - 500.000 điểm</button>
-    <button onclick="unlockPage(6, 1000000)">Unlock Trang 6 - 1.000.000 điểm</button>
-    <button onclick="unlockPage(7, 2000000)">Unlock Trang 7 - 2.000.000 điểm</button>
-    <button onclick="closePopup('shopPopup')">Đóng shop</button>
+    <button onclick="unlockPage(4, 500000)">Unlock Trang 4 - 500.000 điểm</button>
+    <button onclick="closePopup('shopPopup')">Đóng</button>
   </div>
 
   <div class="popup sad-popup" id="poorPopup">
     <h2>Nghèo quá huhu 😭</h2>
-    <p>Không đủ điểm unlock, cày bấm "Có" nhiều vào đi 🥺</p>
-    <button onclick="closePopup('poorPopup')">Cố lên!!!</button>
+    <p>Không đủ điểm, cày bấm "Có" nhiều vào đi 🥺</p>
+    <button onclick="closePopup('poorPopup')">Cố lên!</button>
   </div>
 
   <div class="popup happy-popup" id="unlockSuccessPopup">
-    <h2>UNLOCK THÀNH CÔNG 🎉🎉</h2>
+    <h2>UNLOCK THÀNH CÔNG 🎉</h2>
     <p>Trang mới mở rồi, troll tiếp nào 😈</p>
     <button onclick="closePopup('unlockSuccessPopup')">Yayyy</button>
   </div>
@@ -343,7 +370,6 @@
   </div>
 
   <button id="restartBtnBig">Restart lại đi mà 🥺</button>
-
   <button id="restartBtnFixed">🔄 Restart</button>
 
   <footer>
@@ -352,13 +378,11 @@
   </footer>
 
   <script>
-    // Ảnh
     const normalImg = "https://i.pinimg.com/originals/c2/f4/ed/c2f4ed4704f30bbeb495c344cb9486c2.gif";
     const happyImg = "https://media.tenor.com/uiyuVbNEvwkAAAAM/anime-happy.gif";
     const sadImg = "https://media.tenor.com/6qJBThILOTcAAAAM/shikimoris-not-just-cute-shikimori.gif";
     const angryImg = "http://i.imgur.com/clpBDOi.gif";
 
-    // Chung
     const overlay = document.getElementById('overlay');
     const rain = document.getElementById('rain');
     const hearts = document.getElementById('hearts');
@@ -367,48 +391,14 @@
     const scoreNumber = document.getElementById('scoreNumber');
 
     let score = 0;
+    let unlockedPages = [1, 2]; // Trang 1 & 2 mở sẵn
+    let currentPage = 1;
+    let yesCount = 0;
+    let noCount = 0;
 
-    function updateScore(change) {
-      score += change;
-      if (score < 0) score = 0;
-      scoreNumber.textContent = score.toLocaleString();
-    }
+    const maxTroll = [0, 10, 20, 30, 40]; // Số lần troll tối đa mỗi trang
 
-    // Shop unlock
-    let unlockedPages = [1, 2]; // Trang 1 và 2 mở sẵn
-
-    document.getElementById('shopBtn').addEventListener('click', () => {
-      document.getElementById('shopPopup').style.display = "block";
-    });
-
-    function unlockPage(page, cost) {
-      if (score >= cost) {
-        score -= cost;
-        updateScore(0);
-        unlockedPages.push(page);
-        document.getElementById('unlockSuccessPopup').style.display = "block";
-        setTimeout(() => {
-          closePopup('unlockSuccessPopup');
-          goToPage(page);
-        }, 2000);
-      } else {
-        document.getElementById('poorPopup').style.display = "block";
-      }
-      closePopup('shopPopup');
-    }
-
-    function goToPage(page) {
-      if (unlockedPages.includes(page)) {
-        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-        document.getElementById('page' + page).classList.remove('hidden');
-        currentPage = page;
-        resetGame();
-      } else {
-        alert("Chưa unlock trang này, cày điểm đi huhu 🥺");
-      }
-    }
-
-    // Câu tin nhắn Có/Không cho từng trang (full riêng biệt)
+    // Câu Có - drama ngọt ngào, hài hước
     const yesMessages = {
       1: [
         "Bạn có chắc chắn thích tớ không? 🥺",
@@ -423,7 +413,7 @@
         "YAYYYY!!! Tớ biết bạn thích tớ mà hihi 💖💖💖"
       ],
       2: [
-        "Thích tớ lần 2 rồi hả? Hihi ngại quá đi 😳",
+        "Thích lần 2 rồi hả? Hihi ngại quá đi 😳",
         "Lần này thích thật lòng chứ không đùa nha ❤️",
         "Thích tớ kiểu crush hay kiểu bạn bè vậy ta? 😏",
         "Tớ dễ thương hơn lần trước rồi đúng không? 💕",
@@ -444,11 +434,83 @@
         "Tớ biết mà, bạn không thể kháng cự tớ được 😌",
         "YAYYYY LẦN 2 THÍCH TỚ, YÊU NHAU MÃI MÃI!!! 💕💕💕"
       ],
-      // Trang 3-7: tui viết thêm 30-70 câu drama riêng (ngọt, giận, dỗi, hài VN)
-      3: [/* 30 câu Có riêng cho trang 3, drama nặng hơn */],
-      // Tương tự trang 4-7
+      3: [
+        "Thích tới lần 3 rồi, nghiêm túc đấy hả? 😳",
+        "Lần này thích thật lòng 100% chứ? ❤️",
+        "Thích tớ kiểu muốn cưới luôn hả? 😏",
+        "Tớ càng ngày càng dễ thương đúng không? 💕",
+        "Thích rồi thì phải chăm tớ cả đời nha 😤",
+        "Hihi không ai kháng cự nổi tớ đâu mà 😌",
+        "Thích nhiều đến mức nào rồi? Kể chi tiết đi 🥰",
+        "Từ giờ chỉ được nhìn mỗi tớ thôi nha 😘",
+        "Tớ cũng thích bạn muốn xỉu luôn áaa 🤭",
+        "YAYYYY lần 3 thích tớ, yêu bạn thêm 1000 năm 💖",
+        "Thích hoài không mệt hả? Tốt quá đi 😆",
+        "Thích thật chứ không phải vì thương hại nha 🥺",
+        "Thích thì phải mua quà cho tớ đấy nhé 🎁",
+        "Hihi thích lần 3, sắp thành couple chính thức rồi 😏",
+        "Thích tớ rồi thì phải công khai nha 😤",
+        "Tớ hạnh phúc muốn bay luôn á 🥰",
+        "Thích nhiều hơn lần trước chưa? Be honest ❤️",
+        "Từ giờ tớ là người yêu bạn rồi nha 😈",
+        "Tớ biết mà, bạn nghiện tớ rồi đúng không 😌",
+        "YAYYYY LẦN 3 THÍCH TỚ, CHÚNG TA LÀ CỦA NHAU MÃI MÃI!!! 💕💕💕",
+        "Thích lần 3 rồi, không thoát được đâu huhu 😘",
+        "Tớ dễ thương nhất thế giới đúng không? 😏",
+        "Thích thì phải ôm tớ một cái đi nào 🤗",
+        "Hihi thích lần 3, tiến bộ vượt bậc luôn 😆",
+        "Thích tớ rồi thì phải chiều tớ hết mức nha 😤",
+        "Tớ vui quá trời luôn á 🥰",
+        "Thích nhiều đến mức nào rồi? Nói to lên ❤️",
+        "Từ giờ chỉ được yêu mình tớ thôi nha 😈",
+        "Tớ biết bạn không thể sống thiếu tớ mà 😌",
+        "YAYYYY LẦN 3 THÍCH TỚ, HẠNH PHÚC QUÁ ĐI MẤT!!! 💖💖💖"
+      ],
+      4: [
+        "Thích tới lần 4 rồi, bạn nghiện tớ nặng rồi hả? 😳",
+        "Lần này thích thật lòng đến mức nào rồi? ❤️",
+        "Thích tớ kiểu muốn cưới luôn đúng không? 😏",
+        "Tớ là người dễ thương nhất bạn từng gặp chứ? 💕",
+        "Thích rồi thì phải chăm sóc tớ cả đời nha 😤",
+        "Hihi bạn đã chính thức rơi vào lưới tình của tớ 😌",
+        "Thích nhiều đến mức không ngủ được hả? 🥰",
+        "Từ giờ chỉ được nghĩ đến tớ thôi nha 😘",
+        "Tớ cũng thích bạn muốn chết luôn áaa 🤭",
+        "YAYYYY lần 4 thích tớ, yêu bạn vĩnh cửu luôn 💖",
+        "Thích hoài không chán, tốt quá đi mất 😆",
+        "Thích thật lòng chứ không phải vì áp lực nha 🥺",
+        "Thích thì phải mua quà đắt tiền cho tớ đấy 🎁",
+        "Hihi thích lần 4, sắp chính thức luôn rồi 😏",
+        "Thích tớ rồi thì phải công khai trên Facebook nha 😤",
+        "Tớ hạnh phúc muốn nổ tung luôn á 🥰",
+        "Thích nhiều hơn lần trước bao nhiêu %? ❤️",
+        "Từ giờ tớ là chủ của trái tim bạn rồi nha 😈",
+        "Tớ biết mà, bạn đã hoàn toàn thuộc về tớ 😌",
+        "YAYYYY LẦN 4 THÍCH TỚ, CHÚNG TA SẼ BÊN NHAU MÃI MÃI!!! 💕💕💕",
+        "Thích lần 4 rồi, không còn đường lui đâu huhu 😘",
+        "Tớ dễ thương nhất vũ trụ đúng không? 😏",
+        "Thích thì phải ôm tớ thật chặt đi nào 🤗",
+        "Hihi thích lần 4, bạn siêu đáng yêu luôn 😆",
+        "Thích tớ rồi thì phải chiều chuộng tớ hết mực nha 😤",
+        "Tớ vui quá trời quá đất luôn á 🥰",
+        "Thích đến mức nào rồi? Nói hết đi nào ❤️",
+        "Từ giờ chỉ được yêu mỗi mình tớ thôi đấy 😈",
+        "Tớ biết bạn không thể sống thiếu tớ nữa rồi 😌",
+        "YAYYYY LẦN 4 THÍCH TỚ, HẠNH PHÚC VÔ BIÊN LUÔN Á!!! 💖💖💖",
+        "Thích lần 4, bạn đã chính thức bị tớ thu phục 😏",
+        "Tớ là người yêu lý tưởng nhất đúng không? 💕",
+        "Thích thì phải hôn tớ một cái đi nào 😘",
+        "Hihi thích lần 4, không gì sánh bằng 😆",
+        "Thích tớ rồi thì phải cưng chiều tớ mãi mãi nha 😤",
+        "Tớ hạnh phúc muốn bay lên trời luôn á 🥰",
+        "Thích nhiều đến mức nào rồi? Nói to lên nào ❤️",
+        "Từ giờ chúng ta là của nhau mãi mãi nha 😈",
+        "Tớ biết bạn yêu tớ nhất trên đời mà 😌",
+        "YAYYYY LẦN CUỐI THÍCH TỚ, YÊU NHAU ĐẾN TRẮNG RĂNG!!! 💕💕💕"
+      ]
     };
 
+    // Câu Không - giận dỗi, buồn bã, troll
     const noMessages = {
       1: [
         "Thích tớ đi mà 🥺",
@@ -462,12 +524,138 @@
         "Thôi mà thích tớ đi, tớ dễ thương mà 😭",
         "Tức bạn thiệt chớ, dỗi luôn đây!!! 😭😭😭"
       ],
-      // Full noMessages cho trang 2-7 tương tự, tăng dần số câu và drama
+      2: [
+        "Lần 2 rồi mà vẫn không thích hả? 🥺",
+        "Thích tớ đi mà, đừng lạnh lùng vậy 😢",
+        "Tớ buồn muốn khóc luôn rồi huhu 😭",
+        "Thích tớ chút thôi cũng được mà 🥹",
+        "Bạn ác quá, tớ dỗi thật rồi đó 💔",
+        "Thích tớ đi, tớ đang buồn lắm 😞",
+        "Không thích thì tớ khóc to hơn nữa đấy 😭",
+        "Thích tớ đi mà, đừng làm tớ buồn 🥺",
+        "Bạn hư quá, tớ giận luôn bây giờ 😤",
+        "Thích tớ đi, tớ dễ thương mà huhu 😭",
+        "Lần 2 rồi, đổi ý đi mà 🥺",
+        "Tớ buồn lắm, thích tớ chút đi 😢",
+        "Không thích thì tớ block bạn luôn đó 😞",
+        "Thích tớ đi, đừng làm tớ khóc nữa 💔",
+        "Bạn thật sự không thích tớ hả? 🥹",
+        "Tớ buồn muốn chết luôn rồi huhu 😭",
+        "Thích tớ đi mà, đừng ác vậy chứ 🥺",
+        "Tớ dỗi thật rồi, không thèm nói nữa 😤",
+        "Thích tớ đi, tớ đang chờ đó 🥰",
+        "TỚ BUỒN MUỐN KHÓC CẢ NGÀY LUÔN Á!!! 😭😭😭"
+      ],
+      3: [
+        "Lần 3 rồi mà vẫn không thích hả? Tớ đau lòng lắm 🥺",
+        "Thích tớ đi mà, đừng làm tớ buồn nữa 😢",
+        "Tớ khóc thật rồi đó, bạn ác quá huhu 😭",
+        "Thích tớ chút thôi cũng được mà 🥹",
+        "Bạn hư quá, tớ dỗi cả tuần luôn đấy 💔",
+        "Thích tớ đi, tớ đang rất buồn 😞",
+        "Không thích thì tớ sẽ khóc cả đêm mất 😭",
+        "Thích tớ đi mà, đừng lạnh lùng vậy 🥺",
+        "Tớ giận bạn thật rồi, không thèm nhìn nữa 😤",
+        "Thích tớ đi, tớ dễ thương nhất mà 😭",
+        "Lần 3 rồi, bạn đổi ý chưa? 🥺",
+        "Tớ buồn muốn chết luôn rồi huhu 😢",
+        "Không thích thì tớ sẽ block + unfriend luôn 😞",
+        "Thích tớ đi, đừng làm tớ đau lòng nữa 💔",
+        "Bạn thật sự không thích tớ chút nào hả? 🥹",
+        "Tớ khóc ướt cả gối rồi huhu 😭",
+        "Thích tớ đi mà, tớ đang chờ đó 🥺",
+        "Tớ dỗi nặng luôn, không thèm nói chuyện nữa 😤",
+        "Thích tớ đi, tớ vẫn còn hy vọng mà 🥰",
+        "TỚ BUỒN MUỐN CHẾT LUÔN RỒI, THÍCH TỚ ĐI MÀ!!! 😭😭😭",
+        "Lần 3 rồi, bạn còn không thích thì tớ đi thật đấy 🥺",
+        "Tớ đau lòng lắm, thích tớ chút đi 😢",
+        "Không thích thì tớ sẽ đi tìm người khác huhu 😭",
+        "Thích tớ đi, đừng làm tớ khóc nữa 🥹",
+        "Bạn ác nhất quả đất luôn á 💔",
+        "Tớ buồn lắm, thích tớ đi mà 😞",
+        "Không thích thì tớ sẽ khóc đến sáng mất 😭",
+        "Thích tớ đi, tớ vẫn còn yêu bạn mà 🥺",
+        "Tớ giận bạn nặng luôn rồi 😤",
+        "TỚ KHÔNG CHỊU NỔI NỮA RỒI, THÍCH TỚ ĐI HUHU!!! 😭😭😭"
+      ],
+      4: [
+        "Lần cuối rồi mà vẫn không thích hả? Tớ tuyệt vọng luôn 🥺",
+        "Thích tớ đi mà, đừng làm tớ đau lòng nữa 😢",
+        "Tớ khóc hết nước mắt rồi huhu 😭",
+        "Thích tớ chút thôi cũng được mà 🥹",
+        "Bạn ác nhất thế giới luôn á 💔",
+        "Tớ buồn muốn chết thật rồi 😞",
+        "Không thích thì tớ sẽ biến mất luôn đấy 😭",
+        "Thích tớ đi mà, đừng lạnh lùng vậy 🥺",
+        "Tớ giận bạn cả đời luôn rồi 😤",
+        "Thích tớ đi, đây là cơ hội cuối cùng 😭",
+        "Lần 4 rồi, bạn còn không thích thì tớ đi thật 🥺",
+        "Tớ đau lòng lắm, thích tớ chút đi 😢",
+        "Không thích thì tớ sẽ quên bạn luôn huhu 😭",
+        "Thích tớ đi, đừng làm tớ khóc nữa 🥹",
+        "Bạn thật sự không có chút tình cảm nào hả? 💔",
+        "Tớ khóc ướt cả áo rồi huhu 😭",
+        "Thích tớ đi mà, tớ vẫn còn yêu bạn lắm 🥺",
+        "Tớ dỗi nặng nhất từ trước đến nay luôn 😤",
+        "Thích tớ đi, tớ đang tuyệt vọng lắm 🥰",
+        "TỚ KHÔNG CHỊU NỔI NỮA RỒI, THÍCH TỚ ĐI MÀ HUHU!!! 😭😭😭",
+        "Lần cuối rồi, bạn không thích thì tớ đi thật đấy 🥺",
+        "Tớ đau lòng muốn vỡ tim luôn rồi 😢",
+        "Không thích thì tớ sẽ tìm người mới huhu 😭",
+        "Thích tớ đi, đừng làm tớ tuyệt vọng 🥹",
+        "Bạn ác quá đi mất, tớ khóc hết đêm nay luôn 💔",
+        "Tớ buồn lắm, thích tớ đi mà 😞",
+        "Không thích thì tớ sẽ không bao giờ tha thứ 😭",
+        "Thích tớ đi, đây là lần cuối tớ hỏi 🥺",
+        "Tớ giận bạn đến hết đời luôn rồi 😤",
+        "TỚ BUỒN MUỐN CHẾT, THÍCH TỚ ĐI MÀ!!! 😭😭😭",
+        "Bạn không thích thì tớ sẽ biến mất khỏi cuộc đời bạn 🥺",
+        "Tớ đau lòng lắm, thích tớ chút thôi cũng được 😢",
+        "Không thích thì thôi, tớ đi đây huhu 😭",
+        "Thích tớ đi, đừng làm tớ khóc nữa 🥹",
+        "Bạn thật sự không thương tớ chút nào hả? 💔",
+        "Tớ khóc đến khô nước mắt rồi 😭",
+        "Thích tớ đi mà, tớ vẫn còn yêu bạn 🥺",
+        "Tớ dỗi nặng luôn, bye bye 😤",
+        "Thích tớ đi, đừng để tớ buồn nữa 🥰",
+        "TỚ KHÔNG CHỊU NỔI, THÍCH TỚ ĐI HUHU HUHU!!! 😭😭😭"
+      ]
     };
 
-    let currentPage = 1;
-    let yesCount = 0;
-    let noCount = 0;
+    function updateScore(change) {
+      score += change;
+      if (score < 0) score = 0;
+      scoreNumber.textContent = score.toLocaleString();
+    }
+
+    function unlockPage(page, cost) {
+      if (score >= cost) {
+        score -= cost;
+        updateScore(0);
+        unlockedPages.push(page);
+        document.getElementById('unlockSuccessPopup').style.display = "block";
+        setTimeout(() => {
+          closePopup('unlockSuccessPopup');
+          goToPage(page);
+        }, 2000);
+      } else {
+        document.getElementById('poorPopup').style.display = "block";
+      }
+      closePopup('shopPopup');
+    }
+
+    document.getElementById('shopBtn').addEventListener('click', () => {
+      document.getElementById('shopPopup').style.display = "block";
+    });
+
+    function goToPage(page) {
+      if (unlockedPages.includes(page)) {
+        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+        document.getElementById('page' + page).classList.remove('hidden');
+        currentPage = page;
+        resetGame();
+      }
+    }
 
     function handleYes(page) {
       yesCount++;
@@ -509,7 +697,7 @@
       createRainDrops();
       restartBtnBig.style.display = "block";
       document.getElementById('animeGirl' + page).src = angryImg;
-      document.getElementById('response' + page).innerHTML = "Tức bạn thiệt chớ cứ không chịu hoài,<br>tớ dỗi luôn đây huhuhuhu 😭😭😭";
+      document.getElementById('response' + page).innerHTML = "TỚ DỖI LUÔN ĐÂY, KHÔNG THÈM NÓI CHUYỆN NỮA!!! 😭😭😭";
     }
 
     function resetGame() {
@@ -520,18 +708,41 @@
       rain.innerHTML = "";
       restartBtnBig.style.display = "none";
       document.querySelectorAll('.animeGirl').forEach(img => img.src = normalImg);
-      document.querySelectorAll('#response1, #response2, #response3, #response4, #response5, #response6, #response7').forEach(r => r.textContent = "");
+      document.querySelectorAll('[id^="response"]').forEach(r => r.textContent = "");
       document.querySelectorAll('.noBtn').forEach(btn => btn.style.position = "static");
-      document.querySelectorAll('.question').forEach(q => q.textContent = "Bạn có thích tớ không? 🥺");
+      document.querySelectorAll('[id^="question"]').forEach(q => q.textContent = "Bạn có thích tớ không? 🥺");
     }
 
-    // Hiệu ứng
     function createHearts(count) {
-      // code như cũ
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.textContent = ['❤️', '💖', '💕', '💗', '💘', '🩷', '🥰'][Math.floor(Math.random() * 7)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          hearts.appendChild(heart);
+          setTimeout(() => heart.remove(), 5000);
+        }, i * 70);
+      }
     }
 
     function createRainDrops() {
-      // code như cũ
+      for (let i = 0; i < 120; i++) {
+        const drop = document.createElement('div');
+        drop.style.position = 'absolute';
+        drop.style.width = '2px';
+        drop.style.height = '60px';
+        drop.style.background = 'rgba(200,230,255,0.6)';
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.animation = 'rainFall ' + (Math.random() * 0.8 + 0.6) + 's linear infinite';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        rain.appendChild(drop);
+      }
+    }
+
+    function closePopup(id) {
+      document.getElementById(id).style.display = "none";
     }
 
     restartBtnBig.onclick = resetGame;
